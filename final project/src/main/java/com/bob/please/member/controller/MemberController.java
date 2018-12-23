@@ -23,80 +23,80 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	//ȸ�� ���� �� ��û ó��
+	//회원 가입 폼 요청 처리
 	@RequestMapping("/member/signup_form")
 	public String signupForm() {
 		return "member/signup_form";
 	}
 	
-	//ȸ�� ���� ��û ó��
+	//회원 가입 요청 처리
 	@RequestMapping("/member/signup")
 	public ModelAndView signup(ModelAndView mView, @ModelAttribute MemberDto dto) {
-		//@ModelAttribute ��� ������̼��� UsersDto �տ� �ٿ� ������
-		//�����۵Ǵ� �Ķ���Ͱ� ����Ǿ UsersDto ��ü�� ��ܼ� ���޵ȴ�.
-		//ModelAndView ��ü�� �ʿ��ϸ� �޼ҵ忡 ���� �غ� �س����� ���޵ȴ�.
+		//@ModelAttribute 라는 어노테이션을 UsersDto 앞에 붙여 놓으면
+		//폼전송되는 파라미터가 추출되어서 UsersDto 객체에 담겨서 전달된다.
+		//ModelAndView 객체가 필요하면 메소드에 받을 준비를 해놓으면 전달된다.
 		service.addUser(mView, dto);
 
 		mView.setViewName("member/signup");
 		return mView;
 	}
-	//�α��� �� ��û ó�� 
+	//로그인 폼 요청 처리 
 	@RequestMapping("/member/loginform")
 	public String loginform() {
 		
 		return "member/loginform";
 	}
-	//�α��� ��û ó��
+	//로그인 요청 처리
 	@RequestMapping("/member/login")
 	public ModelAndView login(HttpSession session, ModelAndView mView, @ModelAttribute MemberDto dto) {
-		//UsersService �� ���ؼ� �α��� ���� ó���� �ϰ�
+		//UsersService 를 통해서 로그인 관련 처리를 하고
 		service.validUser(session, mView, dto);
-		//view ������ ������ ��� 
+		//view 페이지 정보를 담고  
 		mView.setViewName("member/login");
-		//ModelAndView ��ü�� ������ �ش�. 
+		//ModelAndView 객체를 리턴해 준다.
 		return mView;
 	}
-	//�α׾ƿ� ��û ó��
+	//로그아웃 요청 처리
 	@RequestMapping("/member/logout")
 	public String logout(HttpSession session) {
-		//�α� �ƿ� ó���� �ϰ� 
+		//로그 아웃 처리를 하고 
 		session.invalidate();
-		//home.do �� �����Ϸ�Ʈ �̵� ��Ų��.
+		//home.do 로 리다일렉트 이동 시킨다.
 		return "redirect:/home.do";
 	}
 	
-	//���̵� �ߺ� Ȯ�� ajax ��û ó��
+	//아이디 중복 확인 ajax 요청 처리
 	@RequestMapping("/member/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
 		Map<String, Object> map=service.canUseId(inputId);
-		//��� �Ǵ� JSON ���ڿ���
-		//{"canUse":true} �Ǵ� {"canUse":false} �̴�.
+		//출력 되는 JSON 문자열은
+		//{"canUse":true} 또는 {"canUse":false} 이다.
 		return map;
 	}
-	//���� ���� ���� ��û ó��
+	//개인 정보 보기 요청 처리
 	@RequestMapping("/member/info")
 	public ModelAndView authInfo(ModelAndView mView, HttpServletRequest request) {
 		
 		service.showInfo(request.getSession(), mView);
-		//view ������ ������ ��Ƽ� 
+		//view 페이지 정보를 담아서 
 		mView.setViewName("member/info");
-		//ModelAndView ��ü�� �������ش�. 
+		//ModelAndView 객체를 리턴해준다. 
 		return mView;
 	}
-	//�������� ���� �� ��ûó��
+	//개인정보 수정 폼 요청처리
 	@RequestMapping("/member/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request, ModelAndView mView) {
 		service.showInfo(request.getSession(), mView);
 		mView.setViewName("member/updateform");
 		return mView;
 	}
-	//�������� ���� ��ûó��
+	//개인정보 수정 요청처리
 	@RequestMapping("/member/update")
 	public ModelAndView authUpdate(@ModelAttribute MemberDto dto, HttpServletRequest request) {
-		//UsersService ��ü�� �̿��ؼ� �����ݿ�
+		//UsersService 객체를 이용해서 수정반영
 		service.updateUser(dto);
-		// new ModelAndView("view ������ ����")
+		// new ModelAndView("view 페이지 정보")
 		return new ModelAndView("redirect:/member/info.do");
 	}
 	@RequestMapping("/member/delete")
@@ -104,17 +104,17 @@ public class MemberController {
 		service.deleteUser(request.getSession());
 		return new ModelAndView("member/delete");
 	}
-	//��й�ȣ ������ ��ûó��
+	//비밀번호 수정폼 요청처리
 	@RequestMapping("/member/pwd_updateform.do")
 	public ModelAndView authPwdForm(HttpServletRequest request) {
 		return new ModelAndView("member/pwd_updateform");
 	}
-	//��й�ȣ �����ݿ� ��ûó��
+	//비밀번호 수정반영 요청처리
 	@RequestMapping("/member/update_pwd")
 	public ModelAndView authUpdatePwd(HttpServletRequest request) {
-		//��й�ȣ�� �����ϴ� ����Ͻ������� ���񽺷� �����ϰ�
+		//비밀번호를 수정하는 비즈니스로직을 서비스로 수행하고
 		service.updatePwd(request);
-		//view �������� forward �̵��ؼ� ����
+		//view 페이지로 forward 이동해서 응답
 		return new ModelAndView("member/update_pwd");
 	}
 }

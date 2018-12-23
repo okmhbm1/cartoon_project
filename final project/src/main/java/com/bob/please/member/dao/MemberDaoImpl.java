@@ -9,7 +9,7 @@ import com.bob.please.member.dto.MemberDto;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-	//������ü�� ���� �ޱ� ���� 
+	//의존객체를 주입 받기 위해
 	@Autowired
 	private SqlSession session;
 
@@ -30,9 +30,9 @@ public class MemberDaoImpl implements MemberDao {
 		 *  resultType : String
 		 */
 		String userid=session.selectOne("member.getId", dto);
-		if(userid == null) { //���̵� Ȥ�� ��й�ȣ�� Ʋ���� null �̴�. 
+		if(userid == null) { //아이디 혹은 비밀번호가 틀리면 null 이다. 
 			return false;
-		}else { // null �� �ƴϸ� ��ȿ�� �����̴�. 
+		}else { // null 이 아니면 유효한 정보이다. 
 			return true; 
 		}
 	}
@@ -71,7 +71,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void updatePwd(MemberDto dto) {
-		//��й�ȣ�� �����ϱ� 
+		//비밀번호만 수정하기 
 				session.update("member.updatePwd", dto);
 	}
 }
