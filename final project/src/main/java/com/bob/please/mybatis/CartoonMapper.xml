@@ -97,7 +97,7 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       
       <!-- 만호 선택 후 detail -->
       <select id="selectdetail" parameterType="int" resultType="cartoondto">
-         select num,title,description,painter,point,likes,hit,detail_url,image_url,regdate
+         select num,days,title,description,painter,point,likes,hit,detail_url,image_url,regdate
          FROM cartoon
          WHERE num=#{num}
       </select>
@@ -145,11 +145,11 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
      
      <!-- 즐겨찾기 데이터 입력-->
      <insert id="insert_member_link" parameterType="memberlinkdto">
-     		insert into member_link (cartoon_num,userid,detail_url) value(#{cartoon_num},#{userid},#{detail_url})
+     		insert into member_link (cartoon_num,days,userid,detail_url) value(#{cartoon_num},#{days},#{userid},#{detail_url})
      </insert>
      
      <select id="select_member_link_all" parameterType="memberlinkdto" resultType="memberlinkdto">
-     		select num,cartoon_num,userid,detail_url from member_link where userid=#{userid}
+     		select num,days,cartoon_num,userid,detail_url from member_link where userid=#{userid}
      </select>
      
      <update id="updategood" parameterType="cartooncommentdto">

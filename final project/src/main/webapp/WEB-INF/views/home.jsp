@@ -156,40 +156,8 @@
 <body>
    
 
-   <div class="container">
-      <div id="header">
-      <!-- 메인배너 -->
-      <div class="row">
-      	<div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
-		
+  <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
 
-	  <!--헤더 서치바-->   
-      <div class="col-xs-3 col-xs-offset-1 display-none">         
-      	<div class="input-group" id="searchbar">
-	      <input type="text" class="form-control" placeholder="Search for...">
-	      <span class="input-group-btn">
-	        <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-	      </span>
-      	</div><!-- /input-group -->
-     </div>
-
-
-     <!-- 광고 -->
-   	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
-   	</div>
-   	</div>
-   </div>
-
-
-
-
-   <div class="nav-container">
-	   <div class="navbar navbar-inverse">
-	      <a href="cartoon/list.do" class="navbar-brand">웹툰</a>
-	      <a  href="board_anonymous/list.do" class="navbar-brand">게시판</a>
-	      <a  href="board_review/list.do" class="navbar-brand">리뷰</a>
-	   </div>
-   </div> <!--네비바 -->
 
    
    <!-- 바디 -->
@@ -236,10 +204,17 @@
       </form>
    </c:when>
    <c:otherwise>
-      <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
-      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
-         <a href="member/logout.do">로그아웃</a>
-         
+   
+   <table>
+   	<tr>
+   		<td><h3>${userid }님</h3><br /></td>
+   	</tr>
+   	<tr>
+   		<td><a href="member/info.do">정보수정</a> / <a href="cartoon/link_detail.do">즐겨찾기 목록</a></td>
+   	</tr>
+   </table>
+   <br />
+	<a href="member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
 
@@ -281,7 +256,7 @@
     </tbody>
   </table>
    	</div> <!-- section--> 
-   
+   </div><!-- body닫기 -->
 
 
    	<!--게시판 모음-->
@@ -367,6 +342,7 @@
       </tbody>
   </table>
        </div> <!--익명게시판 끝-->
+       </div><!-- row 닫기 -->
          
       
 
@@ -452,17 +428,19 @@
       
     </tbody>
   </table>	
+
 	</div> <!--질문 게시판 끝-->
+	</div><!-- row 닫기 -->
+	</div><!-- conleft 닫기 -->
+	</div><!-- body 닫기 -->
+	</div><!-- 총 container 닫기 -->
 
  
 
-  
-<a href="cartoon/detail.do">detail</a>
-<a href="checkcategory.do">checkcategory</a>
-<a href="administer/administer_page.do">administer_page</a>
+
 <!-- jquery 로딩하기-->
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

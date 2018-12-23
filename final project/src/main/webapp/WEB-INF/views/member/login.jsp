@@ -10,18 +10,25 @@
 <body>
 <c:choose>
 	<c:when test="${requestScope.isSuccess }">
-		<p> ${userid } 님 로그인 되었습니다. 
 			<c:if test="${empty param.url }">
-				<a href="${pageContext.request.contextPath}/home.do">확인</a>
+					<script>
+					alert("로그인 완료");
+					location.href="${pageContext.request.contextPath}/home.do";
+					</script>
 			</c:if>
 			<c:if test="${not empty param.url }">
-				<a href="${param.url }">확인</a>
+				<script>
+				alert("로그인 완료");
+				location.href="${param.url }";
+				</script>
 			</c:if>
-		</p>
 	</c:when>
-	<c:otherwise>
-		<p> 아이디 혹은 비밀번호가 틀려요. <a href="loginform.do">다시 로그인 하기</a></p>
-	</c:otherwise>
+			<c:otherwise>
+				<script>
+					alert("로그인 실패.");
+					location.href="${pageContext.request.contextPath}/home.do";
+				</script>
+			</c:otherwise>
 </c:choose>
 </body>
 </html>

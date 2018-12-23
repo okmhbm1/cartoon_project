@@ -31,6 +31,7 @@ package com.bob.please.member.service;
 			dao.insert(dto);
 			mView.addObject("userid", dto.getUserid());
 	}
+		
 	@Override
 	public void validUser(HttpSession session, ModelAndView mView, MemberDto dto) {
 		boolean isValid=false;
@@ -56,6 +57,7 @@ package com.bob.please.member.service;
 		}
 		return map;
 	}
+	
 	@Override
 	public void showInfo(HttpSession session, ModelAndView mView) {
 		String userid=(String)session.getAttribute("userid");

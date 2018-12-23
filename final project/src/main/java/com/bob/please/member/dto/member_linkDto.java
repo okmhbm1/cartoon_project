@@ -6,15 +6,17 @@ public class member_linkDto {
 	int cartoon_num;
 	String userid;
 	String detail_url;
+	String days;
 	
 	public member_linkDto() {}
 
-	public member_linkDto(int num, int cartoon_num, String userid, String detail_url) {
+	public member_linkDto(int num, int cartoon_num, String userid, String detail_url, String days) {
 		super();
 		this.num = num;
 		this.cartoon_num = cartoon_num;
 		this.userid = userid;
 		this.detail_url = detail_url;
+		this.days = days;
 	}
 
 	public int getNum() {
@@ -48,6 +50,15 @@ public class member_linkDto {
 	public void setDetail_url(String detail_url) {
 		this.detail_url = detail_url;
 	}
+
+	public String getDays() {
+		return days;
+	}
+
+	public void setDays(String days) {
+		this.days = days;
+	}
+
 	
 	
 

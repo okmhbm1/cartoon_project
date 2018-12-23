@@ -1,5 +1,6 @@
 package com.bob.please.member.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,79 +23,80 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	//È¸¿ø °¡ÀÔ Æû ¿äÃ» Ã³¸®
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/signup_form")
 	public String signupForm() {
 		return "member/signup_form";
 	}
 	
-	//È¸¿ø °¡ÀÔ ¿äÃ» Ã³¸®
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/signup")
 	public ModelAndView signup(ModelAndView mView, @ModelAttribute MemberDto dto) {
-		//@ModelAttribute ¶ó´Â ¾î³ëÅ×ÀÌ¼ÇÀ» UsersDto ¾Õ¿¡ ºÙ¿© ³õÀ¸¸é
-		//ÆûÀü¼ÛµÇ´Â ÆÄ¶ó¹ÌÅÍ°¡ ÃßÃâµÇ¾î¼­ UsersDto °´Ã¼¿¡ ´ã°Ü¼­ Àü´ÞµÈ´Ù.
-		//ModelAndView °´Ã¼°¡ ÇÊ¿äÇÏ¸é ¸Þ¼Òµå¿¡ ¹ÞÀ» ÁØºñ¸¦ ÇØ³õÀ¸¸é Àü´ÞµÈ´Ù.
+		//@ModelAttribute ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ UsersDto ï¿½Õ¿ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ÛµÇ´ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾î¼­ UsersDto ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½ÞµÈ´ï¿½.
+		//ModelAndView ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï¸ï¿½ ï¿½Þ¼Òµå¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÞµÈ´ï¿½.
 		service.addUser(mView, dto);
-		mView.setViewName("member/greeting");
+
+		mView.setViewName("member/signup");
 		return mView;
 	}
-	//·Î±×ÀÎ Æû ¿äÃ» Ã³¸® 
+	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ 
 	@RequestMapping("/member/loginform")
 	public String loginform() {
 		
 		return "member/loginform";
 	}
-	//·Î±×ÀÎ ¿äÃ» Ã³¸®
+	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/login")
 	public ModelAndView login(HttpSession session, ModelAndView mView, @ModelAttribute MemberDto dto) {
-		//UsersService ¸¦ ÅëÇØ¼­ ·Î±×ÀÎ °ü·Ã Ã³¸®¸¦ ÇÏ°í
+		//UsersService ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½
 		service.validUser(session, mView, dto);
-		//view ÆäÀÌÁö Á¤º¸¸¦ ´ã°í 
+		//view ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 		mView.setViewName("member/login");
-		//ModelAndView °´Ã¼¸¦ ¸®ÅÏÇØ ÁØ´Ù. 
+		//ModelAndView ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½. 
 		return mView;
 	}
-	//·Î±×¾Æ¿ô ¿äÃ» Ã³¸®
+	//ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/logout")
 	public String logout(HttpSession session) {
-		//·Î±× ¾Æ¿ô Ã³¸®¸¦ ÇÏ°í 
+		//ï¿½Î±ï¿½ ï¿½Æ¿ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ 
 		session.invalidate();
-		//home.do ·Î ¸®´ÙÀÏ·ºÆ® ÀÌµ¿ ½ÃÅ²´Ù.
+		//home.do ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Æ® ï¿½Ìµï¿½ ï¿½ï¿½Å²ï¿½ï¿½.
 		return "redirect:/home.do";
 	}
 	
-	//¾ÆÀÌµð Áßº¹ È®ÀÎ ajax ¿äÃ» Ã³¸®
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½ ajax ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
 		Map<String, Object> map=service.canUseId(inputId);
-		//Ãâ·Â µÇ´Â JSON ¹®ÀÚ¿­Àº
-		//{"canUse":true} ¶Ç´Â {"canUse":false} ÀÌ´Ù.
+		//ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ JSON ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½
+		//{"canUse":true} ï¿½Ç´ï¿½ {"canUse":false} ï¿½Ì´ï¿½.
 		return map;
 	}
-	//°³ÀÎ Á¤º¸ º¸±â ¿äÃ» Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	@RequestMapping("/member/info")
 	public ModelAndView authInfo(ModelAndView mView, HttpServletRequest request) {
 		
 		service.showInfo(request.getSession(), mView);
-		//view ÆäÀÌÁö Á¤º¸¸¦ ´ã¾Æ¼­ 
+		//view ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ 
 		mView.setViewName("member/info");
-		//ModelAndView °´Ã¼¸¦ ¸®ÅÏÇØÁØ´Ù. 
+		//ModelAndView ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. 
 		return mView;
 	}
-	//°³ÀÎÁ¤º¸ ¼öÁ¤ Æû ¿äÃ»Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã»Ã³ï¿½ï¿½
 	@RequestMapping("/member/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request, ModelAndView mView) {
 		service.showInfo(request.getSession(), mView);
 		mView.setViewName("member/updateform");
 		return mView;
 	}
-	//°³ÀÎÁ¤º¸ ¼öÁ¤ ¿äÃ»Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»Ã³ï¿½ï¿½
 	@RequestMapping("/member/update")
 	public ModelAndView authUpdate(@ModelAttribute MemberDto dto, HttpServletRequest request) {
-		//UsersService °´Ã¼¸¦ ÀÌ¿ëÇØ¼­ ¼öÁ¤¹Ý¿µ
+		//UsersService ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 		service.updateUser(dto);
-		// new ModelAndView("view ÆäÀÌÁö Á¤º¸")
+		// new ModelAndView("view ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
 		return new ModelAndView("redirect:/member/info.do");
 	}
 	@RequestMapping("/member/delete")
@@ -102,17 +104,17 @@ public class MemberController {
 		service.deleteUser(request.getSession());
 		return new ModelAndView("member/delete");
 	}
-	//ºñ¹Ð¹øÈ£ ¼öÁ¤Æû ¿äÃ»Ã³¸®
+	//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»Ã³ï¿½ï¿½
 	@RequestMapping("/member/pwd_updateform.do")
 	public ModelAndView authPwdForm(HttpServletRequest request) {
 		return new ModelAndView("member/pwd_updateform");
 	}
-	//ºñ¹Ð¹øÈ£ ¼öÁ¤¹Ý¿µ ¿äÃ»Ã³¸®
+	//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ ï¿½ï¿½Ã»Ã³ï¿½ï¿½
 	@RequestMapping("/member/update_pwd")
 	public ModelAndView authUpdatePwd(HttpServletRequest request) {
-		//ºñ¹Ð¹øÈ£¸¦ ¼öÁ¤ÇÏ´Â ºñÁî´Ï½º·ÎÁ÷À» ¼­ºñ½º·Î ¼öÇàÇÏ°í
+		//ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
 		service.updatePwd(request);
-		//view ÆäÀÌÁö·Î forward ÀÌµ¿ÇØ¼­ ÀÀ´ä
+		//view ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ forward ï¿½Ìµï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 		return new ModelAndView("member/update_pwd");
 	}
 }

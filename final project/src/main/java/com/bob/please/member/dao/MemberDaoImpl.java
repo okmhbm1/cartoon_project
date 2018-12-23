@@ -9,7 +9,7 @@ import com.bob.please.member.dto.MemberDto;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-	//ÀÇÁ¸°´Ã¼¸¦ ÁÖÀÔ ¹Þ±â À§ÇØ 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	@Autowired
 	private SqlSession session;
 
@@ -30,9 +30,9 @@ public class MemberDaoImpl implements MemberDao {
 		 *  resultType : String
 		 */
 		String userid=session.selectOne("member.getId", dto);
-		if(userid == null) { //¾ÆÀÌµð È¤Àº ºñ¹Ð¹øÈ£°¡ Æ²¸®¸é null ÀÌ´Ù. 
+		if(userid == null) { //ï¿½ï¿½ï¿½Ìµï¿½ È¤ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ null ï¿½Ì´ï¿½. 
 			return false;
-		}else { // null ÀÌ ¾Æ´Ï¸é À¯È¿ÇÑ Á¤º¸ÀÌ´Ù. 
+		}else { // null ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½. 
 			return true; 
 		}
 	}
@@ -40,7 +40,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public boolean isExist(String inputId) {
 		String selectedId=session.selectOne("member.isExist", inputId);
-		if(selectedId==null) {// null ÀÌ¸é ÇØ´ç¾ÆÀÌµð´Â Á¸Àç ÇÏÁö ¾Ê´Â°ÍÀÌ´Ù.
+		if(selectedId==null) {
 			return false;
 		}else {
 			return true;
@@ -71,7 +71,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void updatePwd(MemberDto dto) {
-		//ºñ¹Ð¹øÈ£¸¸ ¼öÁ¤ÇÏ±â 
+		//ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
 				session.update("member.updatePwd", dto);
 	}
 }

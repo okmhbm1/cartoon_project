@@ -397,11 +397,12 @@ public class CartoonController {
 	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응
 	 @RequestMapping("/cartoon/link.do")
 	 @ResponseBody
-	 public String link(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String detail_url) {
+	 public String link(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String detail_url, @RequestParam String days) {
 		 member_linkDto dto = new member_linkDto();
 		 dto.setCartoon_num(cartoon_num);
 		 dto.setUserid(userid);
 		 dto.setDetail_url(detail_url);
+		 dto.setDays(days);
 		 int is_selected= service.is_linked(dto);
 		 if(is_selected > 0) {
 			 System.out.println("이미 평가함");

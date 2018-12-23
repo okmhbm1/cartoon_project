@@ -169,40 +169,7 @@
 <body>
    
 
-   <div class="container">
-      <div id="header">
-      <!-- 메인배너 -->
-      <div class="row">
-         <div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
-      
-
-     <!--헤더 서치바-->   
-      <div class="col-xs-3 col-xs-offset-1 display-none">         
-         <div class="input-group" id="searchbar">
-         <input type="text" class="form-control" placeholder="Search for...">
-         <span class="input-group-btn">
-           <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-         </span>
-         </div><!-- /input-group -->
-     </div>
-
-
-     <!-- 광고 -->
-        <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
-      </div>
-      </div>
-   </div>
-
-
-
-   <div class="nav-container">
-      <div class="navbar navbar-inverse">
-         <a  href="#" class="navbar-brand">업데이트</a>
-         <a href="#" class="navbar-brand">웹툰</a>
-         <a  href="#" class="navbar-brand">게시판</a>
-         <a  href="#" class="navbar-brand">리뷰</a>
-      </div>
-   </div> <!--네비바 -->
+  <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
 
    
    <!-- 바디 -->
@@ -210,23 +177,24 @@
    <div class="body">
    <div class="container left">
       <h3>${dto.title }</h3>
-      <hr></hr>
+      <hr style="border:1px solid black"></hr>
       <div class="row ">
-      	 조회수 : ${hit }
          <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
          <br>
          <div class="col-xs-6">
-         <p>작가 : ${dto.painter }</p>
-         <p>줄거리 : ${dto.description}</p>
+         <p><b>작가</b> : ${dto.painter }</p>
+         <p><b>줄거리</b> : ${dto.description}</p>
+         <p><b>조회수</b> : ${hit }</p>
+         <div style="display:none">${dto.days }</div>
          </div> <!--첫번째 row-->
-         <button class="btn btn-primary right link"> 즐겨찾기</button>          
-         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_url}' " style="margin-right:4px">보러가기</button><br><br>
+         <button class="btn btn-default right link"> 즐겨찾기</button>          
+         <button class="btn btn-default right" onclick = "location.href = '${dto.detail_url}' " style="margin-right:4px">보러가기</button><br><br>
 	     
-           <button style="margin-right:4px" class="right btn btn-primary" id="recomm">추천 : ${dto.likes }</button>	
+           <button style="margin-right:4px" class="right btn btn-default" id="recomm">추천 : ${dto.likes }</button>	
          
       </div>
       <br/>
-         <hr style="border:1.19px solid black">
+         <hr style="border:2px solid #B7B5B5;">
     <div class="row" style="text-align: center">
          <div class="star" class="col-xs-5" style="color:red;">
 	         <span  id="star1">☆</span>
@@ -247,7 +215,7 @@
 	         	<input type="hidden" id="userid" name="userid" value="${userid }"/>
 	         	<input type="hidden" id="point" name="point"/>
 	          	<input type="text" class="form-control" id="comment" placeholder="평가를 써주세요."/>
-	          	 <button id="submitbtn" class="btn btn-primary "type="submit">전송</button>
+	          	 <button id="submitbtn" class="btn btn-default "type="submit">전송</button>
 	          </form>
          </div>
 			
@@ -266,7 +234,7 @@
           </div>
     </div><!--row 끝-->
             
-         <hr style="border:1.19px solid black">
+         <hr style="border:2px solid #B7B5B5;">
 
 
 
@@ -373,10 +341,10 @@
 		
 		
 		$(".link").on('click',function(){
-		
 		var cartoon_num=$("#num").val();
 		var userid=$("#userid").val();
 		var detail_url=location.href
+		var days='${dto.days}';
 			$.ajax({
 				method:'POST',
 				url:'link.do',
@@ -384,8 +352,8 @@
 				data : {
 					"cartoon_num":cartoon_num,
 					"userid":userid,
-					"detail_url":detail_url
-				
+					"detail_url":detail_url,
+					"days":days
 				},
 				success : function(success){
 					 alert("즐겨찾기 게시판으로 가시겠습니까?");
