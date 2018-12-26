@@ -17,12 +17,19 @@
 
 	  <!--헤더 서치바-->   
       <div class="col-xs-3 col-xs-offset-1 display-none">         
+      	 <form action="${pageContext.request.contextPath}/cartoon/search.do" method="get">
       	<div class="input-group" id="searchbar">
-	      <input type="text" class="form-control" placeholder="Search for...">
+	      
+	      
+	      <input id="title" name="title" type="text" class="form-control" placeholder="검색">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-	      </span>
+	       <button id="click" class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
+	    </span>
+	   
+	      
+	      
       	</div><!-- /input-group -->
+      	</form>
      </div>
 
 
@@ -43,15 +50,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">게시판<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">유저게시판</a></li>
-            <li><a href="#">익명게시판</a></li>
-            <li><a href="#">질문게시판</a></li>
+            <li><a href="${pageContext.request.contextPath}/board_free/list.do" class="navbar-brand">유저게시판</a></li>
+            <li><a href="#">요청게시판</a></li>
           </ul>
         </li>
       </ul>
 	   </div>
    </div> <!--네비바 -->
-   
-   
+ 
 </body>
 </html>

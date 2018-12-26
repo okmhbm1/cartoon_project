@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardfree">
+	<select id="getData2" parameterType="boardfreeDto" resultType="boardfreeDto">
+	SELECT a.*	
+	FROM(SELECT num,<![CDATA[
+		(SELECT br2.num FROM board_free br2 WHERE br2.num < board_free.num ORDER BY br2.num
+		DESC LIMIT 1) prevNum,
+		(SELECT MIN(br2.num)FROM board_free br2 WHERE br2.num > board_free.num ORDER BY br2.num
+		DESC) nextNum,]]> writer, title, content, viewCount, regdate 
+			FROM board_free	
+				<where>
+					<if test="writer != null">
+						OR writer LIKE CONCAT('%',#{writer},'%')
+					</if>
+					<if test="title != null">
+						OR title LIKE CONCAT('%',#{title},'%')
+					</if>
+						<if test="content != null">
+						OR content LIKE CONCAT('%',#{content},'%')
+					</if>
+				</where>			
+	    ) AS a  
+	 WHERE num=#{num}
+	</select>	
+	
+	<select id="getData" parameterType="int" resultType="boardfreeDto">
+		SELECT a.*	
+		FROM(SELECT num,<![CDATA[
+				(SELECT br2.num FROM board_free br2 WHERE br2.num < board_free.num ORDER BY br2.num
+				DESC LIMIT 1) prevNum,
+				(SELECT MIN(br2.num)FROM board_free br2 WHERE br2.num > board_free.num ORDER BY br2.num
+				DESC) nextNum,]]> writer, title, content, viewCount, regdate 
+			FROM board_free	
+		    ) AS a  
+		 WHERE num=#{num}
+	</select>
+	<select id="getList" parameterType="boardfreeDto" resultType="boardfreeDto">
+		
+		SELECT *
+		FROM (SELECT result1.*, (@ROWNUM:=@ROWNUM+1) AS rnum
+		 	  FROM (SELECT num, writer, title, content, viewCount, regdate
+			        FROM board_free
+			        <where>
+						<if test="writer != null">
+							OR writer LIKE CONCAT('%',#{writer},'%')
+						</if>
+						<if test="title != null">
+							OR title LIKE CONCAT('%',#{title},'%')
+						</if>
+						<if test="content != null">
+							OR content LIKE CONCAT('%',#{content},'%')
+						</if>
+					</where>
+			        ORDER BY num DESC) result1,(SELECT @ROWNUM:=0)TMP)AS final
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<insert id="insert" parameterType="boardfreeDto">
+		INSERT INTO board_free
+		(num, writer, title, content, viewCount, regdate)
+		SELECT case count(*) WHEN 0 THEN 1 ELSE MAX(num) + 1 END, #{writer}, #{title}, #{content},
+		#{viewCount}, now() FROM board_free
+	</insert>
+	<select id="getCount" resultType="int" parameterType="boardfreeDto">
+		
+		SELECT count(*)
+		FROM board_free
+		<where>
+			<if test="writer != null">
+				OR writer LIKE CONCAT('%',#{writer},'%')
+			</if>
+			<if test="title != null">
+				OR title LIKE CONCAT('%',#{title},'%')
+			</if>
+			<if test="content != null">
+				OR content LIKE CONCAT('%',#{content},'%')
+			</if>
+		</where>
+	</select>
+	
+	<update id="addViewCount" parameterType="int">
+		UPDATE board_free
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_free
+		WHERE num=#{num}
+	</delete>
+	<update id="update" parameterType="boardfreeDto">
+		UPDATE board_free
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

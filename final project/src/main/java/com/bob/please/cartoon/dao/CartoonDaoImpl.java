@@ -189,6 +189,11 @@ public class CartoonDaoImpl implements CartoonDao {
 	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
 		return session.selectList("cartoon.select_member_link_all", dto);	}
 
+	@Override
+	public List<CartoonDto> search(String title) {
+		return session.selectList("cartoon.search",title);
+	}
+
 
 	
 

@@ -74,4 +74,10 @@ public class MemberDaoImpl implements MemberDao {
 		//비밀번호만 수정하기 
 				session.update("member.updatePwd", dto);
 	}
+
+//	@Override
+//	public void search(String title) {
+//		session.selectList
+//		
+//	}
 }

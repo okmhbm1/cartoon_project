@@ -60,4 +60,6 @@ public interface CartoonService {
 	
 	public List<member_linkDto> select_member_link_all(member_linkDto dto);
 	
+	public void search(String title,HttpServletRequest request);
+	
 }

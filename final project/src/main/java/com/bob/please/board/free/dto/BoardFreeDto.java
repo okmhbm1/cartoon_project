@@ -1,7 +1,6 @@
-package com.bob.please.board.anonymous.dto;
+package com.bob.please.board.free.dto;
 
-public class BoardAnonymousDto {
-
+public class BoardFreeDto {
 	private int num;
 	private String writer;
 	private String title;
@@ -17,9 +16,9 @@ public class BoardAnonymousDto {
 	private int prevNum;
 	private int nextNum;
 	
-	public BoardAnonymousDto () {}
+	public BoardFreeDto() {}
 
-	public BoardAnonymousDto(int num, String writer, String title, String content, int viewCount, int recommend,
+	public BoardFreeDto(int num, String writer, String title, String content, int viewCount, int recommend,
 			int likeCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;

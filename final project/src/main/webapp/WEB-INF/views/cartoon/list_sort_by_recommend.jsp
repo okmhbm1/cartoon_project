@@ -168,39 +168,7 @@
 <body>
    
 
-   <div class="container">
-      <div id="header">
-      <!-- 메인배너 -->
-      <div class="row">
-         <div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
-      
-
-     <!--헤더 서치바-->   
-      <div class="col-xs-3 col-xs-offset-1 display-none">         
-         <div class="input-group" id="searchbar">
-         <input type="text" class="form-control" placeholder="Search for...">
-         <span class="input-group-btn">
-           <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-         </span>
-         </div><!-- /input-group -->
-     </div>
-
-
-     <!-- 광고 -->
-        <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
-      </div>
-      </div>
-   </div>
-
-
-   <div class="nav-container">
-      <div class="navbar navbar-inverse">
-         <a  href="#" class="navbar-brand">업데이트</a>
-         <a href="#" class="navbar-brand">웹툰</a>
-         <a  href="#" class="navbar-brand">게시판</a>
-         <a  href="#" class="navbar-brand">리뷰</a>
-      </div>
-   </div> <!--네비바 -->
+  <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
 
 
    <!-- 바디 -->
@@ -211,8 +179,7 @@
          <br/>
          <br/>
          <br/>
-         <button class="btn btn-default">연재</button>
-            <button class="btn btn-default">미연재</button>
+
       </div>
       <div class="col-xs-4"></div>
       <div class="col-xs-4">

@@ -5,20 +5,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/board_free/insertform.jsp</title>
+<title>/views/board_free/updateform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+<!-- 스마트 에디터 주석화 -->
+<%-- <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script> --%>
 </head>
 <body>
 <div class="container">
-	<p><strong>${userid }</strong>님 로그인중...</p>
-	<h3>새 글 작성</h3>
-	<form action="insert.do" method="post">
+	<p><strong>${dto.writer }</strong>님이 작성한글</p>
+	<h3>자유게시판 글정보 수정 폼입니다.</h3>
+	<p><strong>${id }</strong>님 로그인중...</p>
+			<h3>수정</h3>
+			<form action="insert.do" method="post">
+				<label for="writer">아이디</label>
+				<input type="text" name="writer" id="writer" value=${ id} /><br/>
+				<label for="title">제목</label>
+				<input type="text" name="title" id="title"/><br/>
+				<label for="content">내용</label>
+				<textarea name="content" id="content" style="width:100%;height:400px;"></textarea>
+				<button type="submit">저장하기</button>
+			</form>
+	</div>
+</body>
+</html>
+<!-- 스마트 에디터 주석화 -->
+<%-- 
+<div class="container">
+	<p><strong>${dto.writer }</strong>님이 작성한글</p>
+	<h3>글 정보 수정</h3>
+	<form action="update.do" method="post">
+		<input type="hidden" name="num" value="${dto.num }" />
 		<label for="title">제목</label>
-		<input type="text" name="title" id="title"/>
+		<input type="text" name="title" id="title" value="${dto.title }"/>
 		<br/>
 		<label for="content">내용</label>
-		<textarea name="content" id="content" style="width:100%;height:400px;display:none;"></textarea>
+		<textarea name="content" id="content" style="width:100%;height:400px;display:none;">${dto.content }</textarea>
 		<div>
 			<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
 			<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
@@ -80,16 +101,4 @@
 	}
 </script>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+</html> --%>

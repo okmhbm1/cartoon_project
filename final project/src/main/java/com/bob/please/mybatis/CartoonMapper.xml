@@ -76,10 +76,10 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       
       
       
-    <!-- 장르별 분류 보기 -->
+        <!-- 장르별 분류 보기 -->
       <select id="selectcategory" parameterType="cartoondto" resultType="cartoondto">
       select num,days,title,point,likes,image_url,portal,regdate,category 
-      from cartoon group by title
+      from cartoon
       
       <where>
                <if test="portal_filter == 1">
@@ -91,7 +91,9 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
                   <if test="portal_filter ==3">
                   portal = 'naver' or portal ='zzam'
                </if>
-            </where>  
+            </where>
+            
+            group by title  
       </select>
      
       
@@ -175,6 +177,9 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
            update cartoon set likes=likes+1 where num=#{cartoon_num} 
      </update>
      
+     <select id="search" parameterType="string" resultType="cartoondto">
+      select num,detail_url,image_url,title from cartoon where title LIKE CONCAT('%',#{title},'%')
+     </select>
 
 </mapper>
 

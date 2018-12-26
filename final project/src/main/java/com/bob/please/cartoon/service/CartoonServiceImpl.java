@@ -311,6 +311,17 @@ public class CartoonServiceImpl implements CartoonService{
 
 
 
+	@Override
+	public void search(String title, HttpServletRequest request) {
+		List<CartoonDto> list= dao.search(title);
+		request.setAttribute("list", list);
+		
+		
+	}
+
+
+
+
 
 
 

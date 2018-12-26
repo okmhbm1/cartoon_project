@@ -143,7 +143,7 @@
 </style>
 <body>
 
-  <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
+<jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
    
    <!-- 바디 -->
    <div class="container">
@@ -151,7 +151,7 @@
    		<div class="container left">
 				
 			
-					<h3>리뷰</h3> 
+					<h3>자유게시판</h3> 
 					<table class="table table-bordered">
 						<thead>
 							<tr>

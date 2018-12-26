@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardfreecomment">
+
+	<insert id="insert" parameterType="boardfreecommentDto">
+		INSERT INTO board_review_comment
+		( writer, content, target_id, ref_group, comment_group, regdate )
+		VALUES(#{writer}, #{content}, #{target_id}, #{ref_group}, #{comment_group}, now())
+	</insert>
+	
+	<select id="getSequence" resultType="int">
+		SELECT (count(*)+1)
+		FROM board_review_comment
+	</select>
+	
+	<update id="update" parameterType="boardfreecommentDto">
+		UPDATE board_review_comment
+		SET content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE board_review_comment
+		SET deleted='yes'
+		WHERE num=#{num}
+	</update>
+	
+	<select id="getList" parameterType="int" resultType="boardfreecommentDto">
+		SELECT num, writer, content, target_id, ref_group, comment_group,
+		 deleted, regdate
+		FROM board_review_comment
+		WHERE ref_group=#{num}
+		ORDER BY comment_group ASC, num ASC
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

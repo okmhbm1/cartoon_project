@@ -1,68 +1,154 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>/views/board_review/detail.jsp</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-<style>
-	/* 글내용의 경계선 표시 */
-	.content{
-		border: 1px dotted #cecece;
-	}
-	/* 글안에 있는 첨부 이미지의 폭 제한 */
-	.content img{
-		max-width: 100%;
-	}
-	/* 댓글에 관련된 css */
-	.comments ul{
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
-	}
-	.comments ul li{
-		border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
-	}
-	.comments dt{
-		margin-top: 5px;
-	}
-	.comments dd{
-		margin-left: 26px;
-	}
-	.comments form textarea, .comments form button{
-		float: left;
-	}
-	.comments li{
-		clear: left;
-	}
-	.comments form textarea{
-		width: 85%;
-		height: 100px;
-	}
-	.comments form button{
-		width: 15%;
-		height: 100px;
-	}
-	/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
-	.comment form{
-		display: none;
-	}
-	.comment{
-		position: relative;
-	}
-	.comment .reply_icon{
-		width: 8px;
-		height: 8px;
-		position: absolute;
-		top: 10px;
-		left: 30px;
-	}
-</style>
+   <meta charset="UTF-8"> 
+   <title>insert title here</title>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 </head>
+<style type="text/css">
+
+   #header{
+      position:relative;
+      top:0px;
+      width:100%;
+      height:150px;
+
+   }
+
+   #image,#advertisement{
+      position:absolute;
+      display:inline-block;
+      top:0px;
+      width:100%;
+      height:100%;
+
+   }
+   #image{
+      position:relative;
+      height:150px;
+      width:340px;
+      display:inline-block;
+   }
+   #searchbar{
+      top:70px;
+      width:270px;
+
+   }
+   #advertisement{
+      height:150px;
+      width:380px;
+      display:inline-block;
+   }
+
+   .nav-container{
+      display:block;
+      top:120px;
+      width:100%;
+      height:50px;
+      border:1px solid white;
+      padding:0px;
+
+   }
+
+   .body{
+      padding:0;
+      margin:0;
+      width:100%;
+      border:10px solid #ffffff;
+      height:400px;
+   }
+
+   .row{
+      width:100%;
+   }
+   .section{
+      position:relative;
+      top:30px;
+      float:right;
+      width:20%;
+      height:100%;
+      border: 1px solid white;
+
+   }
+   .col-xs-2{
+      display:block;
+      width:142px;
+   }
+   .left{
+      float:left;
+      width:80%;
+      height:100%;
+      border:1px solid white;
+   }
+   .image{
+      width:100%;
+      height:100%;
+   }
+   .advertisement{
+      display:inline-block;
+      width:100%;
+      height:100%;
+   }
+   .box{
+      width:50%;
+      height:30%;
+   }
+   .no-border{
+        border-right:none;
+        border-left:none;
+        border-top:none;
+        border-bottom:none;
+        border: none;
+   }
+   left{
+    float:left;
+   }
+   .right{
+    float:right;
+   }
+
+   .navbar{
+    padding-left:190px;
+   }
+
+/* borderless table */
+.table.table-borderless td, .table.table-borderless th {
+    border: 0 !important;
+}
+
+.table.table-borderless {
+    margin-bottom: 0px;
+}
+
+.col-xs-12{
+  position:relative;
+}
+
+.image-full{
+  width:100%;
+  height:200px;
+}
+
+.display-none{
+}
+
+    @media (max-width: 750px){
+       .display-none{
+        display:none;
+        }
+    }
+</style>
 <body>
-<div class="container">
+
+<jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
+   
+   <!-- 바디 -->
+   <div class="container">
+  	 <div class="body">
+   		<div class="container left">
 	<a href="list.do"><button class="btn btn-info">글 목록보기</button></a>
 	<c:if test="${not empty keyword }">
 		<p> <strong>${keyword }</strong> 검색어로 검색된 결과 입니다.</p>
@@ -94,7 +180,7 @@
 	</table>
 	<div class="content">${dto.content }</div>
 	<!-- 로그인된 아이디와 글작성자가 같을때만 수정, 삭제 링크 제공 -->
-	<c:if test="${ sessionScope.userid eq dto.writer }">
+	<c:if test="${ sessionScope.id eq dto.writer }">
 		<a href="updateform.do?num=${dto.num }">수정</a>
 		<a href="javascript:deleteConfirm(${dto.num })">삭제</a>
 	</c:if>
@@ -118,7 +204,7 @@
 								<span>${tmp.regdate }</span>
 								<a href="javascript:" class="reply_link">답글</a> |
 								<c:choose>
-									<c:when test="${userid eq tmp.writer }">
+									<c:when test="${id eq tmp.writer }">
 										<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
 										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
 									</c:when>
@@ -137,14 +223,14 @@
 							<!-- 덧글 대상 -->
 							<input type="hidden" name="target_id" value="${tmp.writer }" />
 							<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
-							<textarea name="content"><c:if test="${empty userid }">로그인이 필요합니다.</c:if></textarea>
-							<button type="submit">등록</button>
+							<textarea name="content" placeholder="로그인이 필요합니다." style="resize:none; width:100%; height:100%;" ></textarea>
+							<button type="submit">등록</button> <%-- <c:if test="${empty id }"> </c:if> --%>
 						</form>	
 						<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
-						<c:if test="${userid eq tmp.writer }">
+						<c:if test="${id eq tmp.writer }">
 							<form class="comment-update-form" action="comment_update.do">
 								<input type="hidden" name="num" value="${tmp.num }" />
-								<textarea name="content">${tmp.content }</textarea>
+								<textarea name="content" placeholder="로그인이 필요합니다." style="resize:none; width:100%; height:100%;">${tmp.content }</textarea>
 								<button type="submit">수정</button>
 							</form>
 						</c:if>
@@ -164,12 +250,13 @@
 				<input type="hidden" name="ref_group" value="${dto.num }"/>
 				<!-- 댓글의 대상자는 원글의 작성자 -->
 				<input type="hidden" name="target_id" value="${dto.writer }"/>
-				<textarea name="content"><c:if test="${empty userid }">로그인이 필요합니다.</c:if></textarea>
+				<textarea name="content" style="resize:none; width:100%; height:100%;" <c:if test="${empty id }"  > placeholder="로그인이 필요합니다."</c:if> ></textarea>
 				<button type="submit">등록</button>
 			</form>
 		</div>
 	</div>
 </div>
+
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
@@ -228,15 +315,15 @@
 	}
 	
 	//폼에 submit 이벤트가 일어 났을때 실행할 함수 등록 
-	$(".comments form").on("submit", function(){
+/* 	$(".comments form").on("submit", function(){
 		//로그인 여부
-		 var isLogin=${not empty userid};
+		 var isLogin=${not empty id};
 		if(isLogin==false){
 			alert("로그인 페이지로 이동 합니다.");
-			location.href="${pageContext.request.contextPath}/member/loginform.do?url=${pageContext.request.contextPath}/board_review/detail.do?num=${dto.num}"; 
+			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}"; 
 			return true;//폼 전송 막기 
 		}
-	});  
+	});  */
 
 	//답글 달기 링크를 클릭했을때 실행할 함수 등록
 	$(".comment .reply_link").click(function(){
@@ -259,22 +346,77 @@
 		}
 	}
 </script>
+ <!-- 로그인 -->
+   <div class="section right">
+    <c:choose>
+   <c:when test="${empty sessionScope.userid }">
+       <form class="form-signin" action="member/login.do?url=${param.url }" method="post">
+	      	<label for="userid" class="sr-only">Your ID</label>
+	        <input type="text" id="writer" name="writer" class="form-control" placeholder="아이디" required autofocus><BR>
+	        <label for="pwd" class="sr-only">Password</label>
+	        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
+	        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
+		        <div class="checkbox">
+			          <label>
+			            <input type="checkbox"> 기억하기 
+			          </label>
+		          	<a href="member/signup_form.do">회원가입</a>
+		        </div>
+      </form>
+   </c:when>
+   <c:otherwise>
+      <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
+      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
+         <a href="member/logout.do">로그아웃</a>
+         
+   </c:otherwise>
+   </c:choose>
+
+
+     <!--주간/월간 순위-->
+    <h3>주간/월간 순위</h3>
+  <table class="table table-striped table-condensed">
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+    </tbody>
+  </table>
+   	</div> <!-- section--> 
+   
+   </div>  <!-- container-->
+  	 </div><!--body-->
+
+<!-- jquery 로딩하기-->
+<script src="js/jquery-3.3.1.min.js"></script>
+<!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

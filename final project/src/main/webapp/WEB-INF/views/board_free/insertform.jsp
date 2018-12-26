@@ -7,11 +7,49 @@
 <meta charset="UTF-8">
 <title>/views/board_free/insertform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+<!-- 스마트 에디터 주석 -->
+<%-- <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script> --%>
 </head>
 <body>
 <div class="container">
-	<p><strong>${userid }</strong>님 로그인중...</p>
+	<c:choose>
+		<c:when test="${userid ne null }">
+			<p><strong>${userid }</strong>님 로그인중...</p>
+			<h3>자유게시판입니다.</h3>
+			<form action="insert.do" method="post">
+				<input type="hidden" name="writer" id="writer" value="${ userid}" /><br/>
+				<label for="userid">아이디</label>
+				<input type="text" name="writer" id="writer" value="${ userid}" disabled/><br/>
+				<label for="title">제목</label>
+				<input type="text" name="title" id="title"/><br/>
+				<label for="content">내용</label>
+				<textarea name="content" id="content" style="width:100%;height:400px;"></textarea>
+				<button type="submit">저장하기</button>
+			</form>
+		</c:when>
+		<c:otherwise>
+			<p><strong>비회원</strong>으로 글쓰기 중...</p>
+			<h3>자유게시판입니다.</h3>
+			<form action="insert.do" method="post">	
+				<label for="userid">아이디</label>
+
+				<input type="text" name="writer" id="writer"/><br/>
+				<label for="title">제목</label>
+				<input type="text" name="title" id="title"/><br/>
+				<label for="content">내용</label>
+				<textarea name="content" id="content" style="width:100%;height:400px;"></textarea>
+				<button type="submit">저장하기</button>
+			</form>	
+			</c:otherwise>		
+		</c:choose>		
+	</div>
+</body>
+</html>
+
+<!-- 스마트 게시판 -->
+<%-- <body>
+<div class="container">
+	<p><strong>${id }</strong>님 로그인중...</p>
 	<h3>새 글 작성</h3>
 	<form action="insert.do" method="post">
 		<label for="title">제목</label>
@@ -80,16 +118,4 @@
 	}
 </script>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+</html> --%>

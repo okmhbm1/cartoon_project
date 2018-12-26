@@ -53,7 +53,18 @@ public class CartoonController {
 	      return "cartoon/list";
 	   }
 	
-	
+	@RequestMapping("/cartoon/search.do")
+	public String search(HttpServletRequest request, @RequestParam String title) {
+		if(title==null) {
+			return "home";
+			
+		}else {
+			service.search(title,request);
+			System.out.println("실행됨");
+			return "cartoon/search";
+		}
+		
+	}
 	//리스트 정렬
 		@RequestMapping("/cartoon/list_sort_by_category.do")
 		   public String list_sort_by_category(HttpServletRequest request) {

@@ -75,5 +75,6 @@ public interface CartoonDao {
 	//즐겨찾기 목록 가져오기
 	public List<member_linkDto> select_member_link_all(member_linkDto dto);
 	
+	public List<CartoonDto> search(String title);
 	
 }

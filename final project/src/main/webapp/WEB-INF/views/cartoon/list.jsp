@@ -218,8 +218,7 @@ image {
 			<div class="row">
 				<div class="col-xs-4">
 					<br /> <br /> <br />
-					<button class="btn btn-default">연재</button>
-					<button class="btn btn-default">미연재</button>
+
 				</div>
 				<div class="col-xs-3"></div>
 				<div class="col-xs-4">
@@ -249,7 +248,8 @@ image {
 								value="category"> 장르
 							</label> <label> <input type="radio" name="filter2"
 								id="recommend" value="recommend"> 추천
-							</label> <label> <input type="radio" name="filter2" id="gender"
+							</label> 
+							<label> <input type="radio" name="filter2" id="gender"
 								value="gender"> 성별
 							</label>
 

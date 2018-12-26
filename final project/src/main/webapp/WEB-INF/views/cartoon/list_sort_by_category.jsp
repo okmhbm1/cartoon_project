@@ -40,8 +40,8 @@
       display:inline-block;
    }
    #searchbar{
-      top:70px;
-      width:270px;
+      top:60px;
+      width:260px;
 
    }
    #advertisement{
@@ -83,7 +83,7 @@
       border: 1px solid white;
 
    }
-   .col-xs-2{
+   .col-xs-3{
 
       display:block;
       width:142px;
@@ -151,7 +151,7 @@
 
 }
 
-    @media (max-width: 750px){
+    @media (max-width: 650px){
        .display-none{
         display:none;
         
@@ -170,39 +170,7 @@
 <body>
    
 
-   <div class="container">
-      <div id="header">
-      <!-- 메인배너 -->
-      <div class="row">
-         <div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
-      
-
-     <!--헤더 서치바-->   
-      <div class="col-xs-3 col-xs-offset-1 display-none">         
-         <div class="input-group" id="searchbar">
-         <input type="text" class="form-control" placeholder="Search for...">
-         <span class="input-group-btn">
-           <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-         </span>
-         </div><!-- /input-group -->
-     </div>
-
-
-     <!-- 광고 -->
-        <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
-      </div>
-      </div>
-   </div>
-
-
-   <div class="nav-container">
-      <div class="navbar navbar-inverse">
-         <a  href="#" class="navbar-brand">업데이트</a>
-         <a href="#" class="navbar-brand">웹툰</a>
-         <a  href="#" class="navbar-brand">게시판</a>
-         <a  href="#" class="navbar-brand">리뷰</a>
-      </div>
-   </div> <!--네비바 -->
+  <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
 
 
    <!-- 바디 -->
@@ -213,8 +181,6 @@
          <br/>
          <br/>
          <br/>
-         <button class="btn btn-default">연재</button>
-            <button class="btn btn-default">미연재</button>
       </div>
       <div class="col-xs-4"></div>
       <div class="col-xs-4">
@@ -259,10 +225,9 @@
                 추천
               </label>
     	<label>
-                <input type="radio" name="filter2" id="gender" value="gender">
-                성별
-              </label>
 
+		<input type="radio" name="filter2" id="gender" value="gender"> 성별
+							</label>
             
             </div>
 <!--           
@@ -296,217 +261,296 @@
       <div class="row">
       <%List<CartoonDto> list = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list.size();i++)
-        {	if(list.get(i).getCategory().equals("에피소드")){ %>      
+        {	if(list.get(i).getCategory()!=null &&list.get(i).getCategory().equals("에피소드")){ %>      
       		<div class="genre">에피소드</div>
       	<%   break;} 
       	}%>
+      	<%int num=0; %>
       <c:forEach items="${list1 }" var="tmp">
+            <%if (num%6==0){ %>
+            <div class="row">
+            <%}%>
             <c:if test="${tmp.category eq '에피소드' }">
-               <div class="col-xs-2" id="episode">
+               <div class="col-xs-3" id="episode">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num++; %>
+            </c:if>
+            <%if (num%6==0) {%>
+            </div><% } %>      
       </c:forEach>
-      </div><!--row-->   
+         
       
-         <div class="row">      
+               
      <%List<CartoonDto> list2 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list2.size();i++)
-        {	if(list2.get(i).getCategory().equals("스토리")){ %>      
+        {	if(list2.get(i).getCategory()!=null &&list2.get(i).getCategory().equals("스토리")){ %>      
       		<div class="genre">스토리</div>
       	<%   break;} 
       	}%>
+      	<%int num2=0; %>
       <c:forEach items="${list1 }" var="tmp">
+      		<%if (num2%6==0){  %>
+            <div class="row">
+            <%}%>
             <c:if test="${tmp.category eq '스토리' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num2++; %>
+            </c:if>
+            <%if (num2%6==0) {%>
+            </div><%} %>       
       </c:forEach>
-      </div ><!--row-->
-            <div class="row">      
+      
+                
       <%List<CartoonDto> list3 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list3.size();i++)
-        {	if(list3.get(i).getCategory().equals("일상")){ %>      
+        {	if(list3.get(i).getCategory()!=null && list3.get(i).getCategory().equals("일상")){ %>      
       		<div class="genre">일상</div>
       	<%   break;} 
       	}%>
+      	<%int num3=0; %>
       <c:forEach items="${list1 }" var="tmp">
+		      <%if (num3%6==0){ %>
+		            <div class="row">
+		            <%}%>
             <c:if test="${tmp.category eq '일상' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               		<%num3++; %>
                </div>
-            </c:if>      
+            </c:if>
+            <%if (num3%6==0) {%>
+            </div><%} %>        
       </c:forEach>
-      </div><!--row-->
+      
             
             
-            <div class="row">      
+                  
       <%List<CartoonDto> list4 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list4.size();i++)
-        {	if(list4.get(i).getCategory().equals("개그")){ %>      
+        {	if(list4.get(i).getCategory()!=null&&list4.get(i).getCategory().equals("개그")){ %>      
       		<div class="genre">개그</div>
       	<%   break;} 
       	}%>
+      	<%int num4=0; %>
       <c:forEach items="${list1 }" var="tmp">
+		      <%if (num4%6==0){ %>
+				            <div class="row">
+				            <%}%>
             <c:if test="${tmp.category eq '개그' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num4++; %>
+            </c:if>
+            <%if (num4%6==0) {%>
+            </div><%} %>        
       </c:forEach>
-      </div><!--row-->
       
       
       
-       <div class="row">      
+      
+        	    
       <%List<CartoonDto> list5 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list5.size();i++)
-        {	if(list5.get(i).getCategory().equals("판타지")){ %>      
+        {	if(list5.get(i).getCategory()!=null && list5.get(i).getCategory().equals("판타지")){ %>      
       		<div class="genre">판타지</div>
       	<%   break;} 
       	}%>
+      	<%int num5=0; %>  
       <c:forEach items="${list1 }" var="tmp">
+      		<%if (num5%6==0){ %>
+				            <div class="row">
+				            <%}%>
             <c:if test="${tmp.category eq '판타지' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num5++; %>
+            </c:if> 
+            <%if (num5%6==0) {%>
+            </div><%} %>        
       </c:forEach>
-      </div><!--row-->
       
       
-      <div class="row">      
+      
+            
       <%List<CartoonDto> list6 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list6.size();i++)
-        {	if(list6.get(i).getCategory().equals("액션")){ %>      
+        {	if(list6.get(i).getCategory()!=null && list6.get(i).getCategory().equals("액션")){ %>      
       		<div class="genre">액션</div>
       	<%   break;} 
       	}%>
+      	<%int num6=0; %>  
       <c:forEach items="${list1 }" var="tmp">
+      			<%if (num6%6==0){ %>
+				  <div class="row">
+				            <%}%>
             <c:if test="${tmp.category eq '액션' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num6++;%>
+            </c:if>
+            <%if (num6%6==0) {%>
+            </div><%} %>          
       </c:forEach>
-      </div><!--row-->
       
       
-            <div class="row">      
-      <%List<CartoonDto> list7 = (List<CartoonDto>)request.getAttribute("list1");
-        for(int i=0;i<(Integer)list7.size();i++)
-        {	if(list7.get(i).getCategory().equals("드라마")){ %>      
+                
+      <%List<CartoonDto> list7= (List<CartoonDto>)request.getAttribute("list1");
+        for(int i=0;i<(Integer)list6.size();i++)
+        {	if(list7.get(i).getCategory()!=null && list7.get(i).getCategory().equals("드라마")){ %>      
       		<div class="genre">드라마</div>
       	<%   break;} 
       	}%>
+      	<%int num7=0; %>
       <c:forEach items="${list1 }" var="tmp">
+      		<%if (num7%6==0){ %>
+				  <div class="row">
+		    <%}%>
             <c:if test="${tmp.category eq '드라마' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <%num7++; %>
+            </c:if>
+            <%if (num7%6==0) {%>
+            </div>
+            <%} %>       
       </c:forEach>
-      </div><!--row-->
+      
         
         
-        <div class="row">
+       
             
         <%List<CartoonDto> list8 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list8.size();i++)
-        {	if(list8.get(i).getCategory().equals("순정")){ %>      
+        {	if(list8.get(i).getCategory()!=null && list8.get(i).getCategory().equals("순정")){ %>      
       		<div class="genre">순정</div>
       	<%   break;} 
       	}%>
+      	<%int num8=0; %>
       <c:forEach items="${list1 }" var="tmp">
+      	<%if (num8%6==0){ %>
+				  <div class="row">
+		    <%} %>
             <c:if test="${tmp.category eq '순정' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num8++; %>
+            </c:if> 
+            <%if (num8%6==0) {%>
+            </div><%}  %>       
       </c:forEach>
-      </div><!--row-->
+     
       
-      
-      <div class="row">      
+       
       <%List<CartoonDto> list9 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list9.size();i++)
-        {	if(list9.get(i).getCategory().equals("감성")){ %>      
+        {	if(list9.get(i).getCategory()!=null && list9.get(i).getCategory().equals("감성")){ %>      
       		<div class="genre">감성</div>
       	<%   break;} 
       	}%>
+      	<%int num9=0; %>
       <c:forEach items="${list1 }" var="tmp">
+		      <%if (num9%6==0){ %>
+						  <div class="row">
+				    <%}%>
             <c:if test="${tmp.category eq '감성' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num9++; %>
+            </c:if>
+            <%if (num9%6==0) {%>
+            </div><%} %>      
       </c:forEach>
-      </div><!--row-->
+      
         
         
-        <div class="row">
+       
         <%List<CartoonDto> list10 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list10.size();i++)
-        {	if(list10.get(i).getCategory().equals("스릴러")){ %>      
+        {	if(list10.get(i).getCategory()!=null && list10.get(i).getCategory().equals("스릴러")){ %>      
       		<div class="genre">스릴러</div>
       	<%   break;} 
-      	}%>      
+      	}%>
+      	<%int num10=0; %>      
       <div class="genre">스릴러</div>
       <c:forEach items="${list1 }" var="tmp">
+      		<%if (num10%6==0){ %>
+						  <div class="row">
+				    <%}%>
             <c:if test="${tmp.category eq '스릴러' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num10++; %>
+            </c:if> 
+            <%if (num10%6==0) {%>
+            </div><%}  %>      
       </c:forEach>
-      </div><!--row-->
-            <div class="row">      
+        
       
       
       <%List<CartoonDto> list11 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list11.size();i++)
-        {	if(list11.get(i).getCategory().equals("시대극")){ %>      
+        {	if(list11.get(i).getCategory()!=null && list11.get(i).getCategory().equals("시대극")){ %>      
       		<div class="genre">시대극</div>
       	<%   break;} 
       	}%>
+      	<%int num11=0; %>      
       <c:forEach items="${list1 }" var="tmp">
+		      <%if (num11%6==0){ %>
+								  <div class="row">
+						    <%} %>
             <c:if test="${tmp.category eq '시대극' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num11++; %>
+            </c:if>
+            <%if (num11%6==0) {%>
+            </div><%}  %>       
       </c:forEach>
-      </div><!--row-->
-      <div class="row">      
+           
 		<%List<CartoonDto> list12 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list12.size();i++)
-        {	if(list12.get(i).getCategory().equals("스포츠")){ %>      
+        {	if(list12.get(i).getCategory()!=null && list12.get(i).getCategory().equals("스포츠")){ %>      
       		<div class="genre">스포츠</div>
       	<%   break;} 
       	}%>
+      	<%int num12=0; %>
       <c:forEach items="${list1 }" var="tmp">
+      				<%if (num12%6==0){ %>
+								  <div class="row">
+						    <%} %>
             <c:if test="${tmp.category eq '스포츠' }">
-               <div class="col-xs-2">
+               <div class="col-xs-3">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
-            </c:if>      
+               <% num12++; %>
+            </c:if>
+            <%if (num12%6==0) {%>
+            </div><%} %>         
       </c:forEach>
-      </div><!--row-->
-
-
+     </div><!-- 만화 목록 감싸는 row -->
   </div><!--body 끝-->
 </div> <!--container-->
       
