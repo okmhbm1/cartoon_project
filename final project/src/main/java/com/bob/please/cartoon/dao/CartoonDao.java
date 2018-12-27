@@ -45,7 +45,7 @@ public interface CartoonDao {
 	
 
 	// 댓글 추천,비추천할 때 이미 추천,비추천했는지 확인
-	int is_selected(String userid);
+	int is_selected(onelike_or_dislikeDto dto);
 	int is_recommend_selected(CartoonLikeDto dto);
 	
 	// 추천했을 때 별점 댓글에 추천 수 증가
@@ -81,4 +81,6 @@ public interface CartoonDao {
 	
 	public List<CartoonDto> recommendoneweeklist();
 	
+	//평점 댓글을 달았는가
+		public int is_saved(CartoonCommentDto dto);
 }

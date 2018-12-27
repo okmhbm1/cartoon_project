@@ -130,9 +130,9 @@ public class CartoonDaoImpl implements CartoonDao {
 
 
 	@Override
-	public int is_selected(String userid) {
+	public int is_selected(onelike_or_dislikeDto dto) {
 		
-		return session.selectOne("cartoon.is_selected",userid);
+		return session.selectOne("cartoon.is_selected",dto);
 	}
 	
 	@Override
@@ -205,6 +205,12 @@ public class CartoonDaoImpl implements CartoonDao {
 	   public List<CartoonDto> recommendoneweeklist() {
 	      return session.selectList("cartoon.recommendoneweeklist");
 	   }
+
+	@Override
+	public int is_saved(CartoonCommentDto dto) {
+		return session.selectOne("cartoon.is_saved",dto);
+	
+	}
 
 
 	

@@ -39,7 +39,7 @@ public interface CartoonService {
 	public void insert(CartoonDto dto);
 	public void insert2(CartoonDto dto);
 	
-	public int is_selected(String userid); //댓글 추천/비추천시 이미 추천/비추천했는지 확인, 확인되면 추천/비추천 연산을 하면 안된다.
+	public int is_selected(onelike_or_dislikeDto dto); //댓글 추천/비추천시 이미 추천/비추천했는지 확인, 확인되면 추천/비추천 연산을 하면 안된다.
 	public int is_recommend_selected(CartoonLikeDto dto); // 마찬가지로 만화 추천
 	public void updategood(CartoonCommentDto dto);
 	public void updatebad(CartoonCommentDto dto);
@@ -52,7 +52,9 @@ public interface CartoonService {
 	public void update_likes(int cartoon_num);
 	
 
-	
+	//평점 댓글을 달았는지
+		public int is_saved(CartoonCommentDto dto);
+		
 	//회원이 어떤 만화를 링크했는지
 	int is_linked(member_linkDto dto);
 

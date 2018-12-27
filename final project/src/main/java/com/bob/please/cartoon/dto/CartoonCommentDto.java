@@ -11,6 +11,8 @@ public class CartoonCommentDto {
 	String comment;
 	String gender;
 	int age;
+	String param;
+	String regdate;
 	public int getCartoon_num() {
 		return cartoon_num;
 	}
@@ -59,8 +61,9 @@ public class CartoonCommentDto {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
 	public CartoonCommentDto(int cartoon_num, String userid, int point, int good, int notgood, String comment,
-			String gender, int age) {
+			String gender, int age, String param,String regdate) {
 		super();
 		this.cartoon_num = cartoon_num;
 		this.userid = userid;
@@ -70,8 +73,23 @@ public class CartoonCommentDto {
 		this.comment = comment;
 		this.gender = gender;
 		this.age = age;
+		this.param=param;
+		this.regdate=regdate;
+		
 	}
 
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public String getParam() {
+		return param;
+	}
+	public void setParam(String param) {
+		this.param = param;
+	}
 	public CartoonCommentDto() {}
 	
 }

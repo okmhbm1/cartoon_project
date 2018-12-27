@@ -182,7 +182,7 @@
                <div class="col-xs-2">
                   <a href="cartoon/detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="cartoon/detail.do?num=${tmp.num}">${tmp.title}</a></div>
-                  <div>추천수 : ${tmp.hit }</div>
+                  <div>추천수 : ${tmp.likes }</div>
                </div>
             <% if(num%6==0){%>
               </div>
