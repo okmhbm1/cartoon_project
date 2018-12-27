@@ -4,15 +4,29 @@ public class onelike_or_dislikeDto {
 	int cartoon_num;
 	String userid;
 	int is_selected;
+	String uploaderid;
 	public onelike_or_dislikeDto() {}
 	
 	
 	
-	public onelike_or_dislikeDto(int cartoon_num, String userid, int is_selected) {
+	public onelike_or_dislikeDto(int cartoon_num, String userid, int is_selected,String uploaderid) {
 		super();
 		this.cartoon_num = cartoon_num;
 		this.userid = userid;
 		this.is_selected = is_selected;
+		this.uploaderid=uploaderid;
+	}
+
+
+
+	public String getUploaderid() {
+		return uploaderid;
+	}
+
+
+
+	public void setUploaderid(String uploaderid) {
+		this.uploaderid = uploaderid;
 	}
 
 

@@ -352,25 +352,41 @@ public class CartoonController {
 	 @ResponseBody
 	 public String savepoint(@RequestParam int point,@RequestParam int cartoon_num,
 			 @RequestParam String userid, @RequestParam String comment) {
+
+		 if(userid==null)
+		 {
+			 return "fail";
+		 }
 		 CartoonCommentDto dto=new CartoonCommentDto();
 		 dto.setPoint(point);
 		 dto.setCartoon_num(cartoon_num);
 		 dto.setUserid(userid);
+		 
 		 dto.setComment(comment);
-		 service.insertcartoonpoint(dto);
-		 System.out.println("호출되냐고");
+		 int num = service.is_saved(dto);
+		 if(num==0)
+		 {	
+			service.insertcartoonpoint(dto);
+		 	System.out.println("호출되냐고");
+		 }
 		 return "success";
-		
 	 }
 	 
 	 // 댓글에 추천했을 때 추천수 증가 ajax 요청 반응
 	 @RequestMapping("/cartoon/good.do")
 	 @ResponseBody
 	 public String good(@RequestParam int cartoon_num, @RequestParam String userid,String uploaderid) {
-
-		 int is_selected= service.is_selected(userid);
 		 
-		 if(is_selected==1) {
+		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1,uploaderid);
+		 if(userid.equals(uploaderid))
+		 {	 
+			 System.out.println("업로더, 댓글 아이디가 같음");
+			 return "fail";
+		 
+		 }
+		 int is_selected= service.is_selected(dto2);
+		 
+		 if(is_selected>=1) {
 			 System.out.println("이미 평가함");
 			 return "fail";
 		 }
@@ -378,20 +394,25 @@ public class CartoonController {
 		 dto.setUserid(uploaderid);
 		 dto.setCartoon_num(cartoon_num);
 		 service.updategood(dto);
-		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1);
+		 
 		 service.set_selected(dto2);
 
 
 
 		 return "success";
-		
 	 }
 	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응
 	 @RequestMapping("/cartoon/notgood.do")
 	 @ResponseBody
 	 public String notgood(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String uploaderid) {
-		 int is_selected= service.is_selected(userid);
-		 if(is_selected==1) {
+		 if(userid.equals(uploaderid)) {
+			 
+			 System.out.println("업로더, 댓글 아이디가 같음");
+			 return "fail";
+		 }
+		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1,uploaderid);
+		 int is_selected= service.is_selected(dto2);
+		 if(is_selected>=1) {
 			 System.out.println("이미 평가함");
 			 return "fail";
 		 }
@@ -399,7 +420,7 @@ public class CartoonController {
 		 dto.setUserid(uploaderid);
 		 dto.setCartoon_num(cartoon_num);
 		 service.updatebad(dto);
-		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1);
+		 
 		 service.set_selected(dto2);
 		 System.out.println("데이터베이스 업데이트함");
 		 

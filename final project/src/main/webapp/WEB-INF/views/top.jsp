@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +11,18 @@
 <body>
    <div class="container">
       <div id="header">
-      <!-- ¸ÞÀÎ¹è³Ê -->
+      <!-- ë©”ì¸ë°°ë„ˆ -->
       <div class="row">
       	<div class="col-xs-4" id="image"> <a href="${pageContext.request.contextPath}/home.do"><img class="image" src="${pageContext.request.contextPath}/resources/images/banner.png"/></a></div>
 		
 
-	  <!--Çì´õ ¼­Ä¡¹Ù-->   
+	  <!--í—¤ë” ì„œì¹˜ë°”-->   
       <div class="col-xs-3 col-xs-offset-1 display-none">         
       	 <form action="${pageContext.request.contextPath}/cartoon/search.do" method="get">
       	<div class="input-group" id="searchbar">
 	      
 	      
-	      <input id="title" name="title" type="text" class="form-control" placeholder="°Ë»ö">
+	      <input id="title" name="title" type="text" class="form-control" placeholder="ê²€ìƒ‰">
 	      <span class="input-group-btn">
 	       <button id="click" class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
 	    </span>
@@ -33,7 +34,7 @@
      </div>
 
 
-     <!-- ±¤°í -->
+     <!-- ê´‘ê³  -->
    	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.png"/></div>
    	</div>
    	</div>
@@ -44,13 +45,14 @@
 
    <div class="nav-container">
 	   <div class="navbar navbar-inverse">
-	      <a href="${pageContext.request.contextPath}/cartoon/list.do" class="navbar-brand">À¥Å÷</a>
-	      <a  href="${pageContext.request.contextPath}/board_review/list.do" class="navbar-brand">¸®ºä</a>
-	      <a  href="${pageContext.request.contextPath}/board_free/list.do" class="navbar-brand">ÀÚÀ¯°Ô½ÃÆÇ</a>
-
-      <a  href="${pageContext.request.contextPath}/administer/administer_page.do" class="navbar-brand">°ü¸®ÀÚ ÆäÀÌÁö</a>
+	      <a href="${pageContext.request.contextPath}/cartoon/list.do" class="navbar-brand">ì›¹íˆ°</a>
+	      <a  href="${pageContext.request.contextPath}/board_review/list.do" class="navbar-brand">ë¦¬ë·°</a>
+	      <a  href="${pageContext.request.contextPath}/board_free/list.do" class="navbar-brand">ìžìœ ê²Œì‹œíŒ</a>
+		<c:if test="${userid eq 'root' }">
+      <a  href="${pageContext.request.contextPath}/administer/administer_page.do" class="navbar-brand">ê´€ë¦¬ìž íŽ˜ì´ì§€</a>
+      	</c:if>
 	   </div>
-   </div> <!--³×ºñ¹Ù -->
+   </div> <!--ë„¤ë¹„ë°” -->
  
 </body>
 </html>

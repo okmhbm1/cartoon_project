@@ -183,6 +183,7 @@ public class CartoonServiceImpl implements CartoonService{
 	public void selectcartoonpointlist(HttpServletRequest request) {
 		CartoonCommentDto dto=new CartoonCommentDto();
 		dto.setCartoon_num(Integer.parseInt(request.getParameter("num")));
+		dto.setParam(request.getParameter("param"));
 		List<CartoonCommentDto> list = dao.selectcartoonpointlist(dto);
 		request.setAttribute("list", list);
 	}
@@ -191,9 +192,9 @@ public class CartoonServiceImpl implements CartoonService{
 
 
 	@Override
-	public int is_selected(String userid) {
+	public int is_selected(onelike_or_dislikeDto dto) {
 		
-		return dao.is_selected(userid);
+		return dao.is_selected(dto);
 	}
 
 
@@ -333,6 +334,14 @@ public class CartoonServiceImpl implements CartoonService{
 	      request.setAttribute("recommendoneweeklist", list);
 	      
 	   }
+
+
+
+
+	@Override
+	public int is_saved(CartoonCommentDto dto) {
+		return dao.is_saved(dto);
+	}
 
 
 

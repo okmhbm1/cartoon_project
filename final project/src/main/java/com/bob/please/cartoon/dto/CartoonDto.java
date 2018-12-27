@@ -18,11 +18,21 @@ public class CartoonDto {
 	      String image_url;
 	      String portal; 
 	      String regdate;
-	      int portal_filter;
+	      int portal_filter; // 네이버, 투믹스를 필터하기 위한 변수, DB와는 상관없음
+	      int grades; //종합 점수 저장하기 위한 변수, DB와는 상관없음.
+	      int avg;
 	      public CartoonDto(){
 	         
 	      }
 	
+		public int getAvg() {
+			return avg;
+		}
+
+		public void setAvg(int avg) {
+			this.avg = avg;
+		}
+
 		public int getPortal_filter() {
 			return portal_filter;
 		}
@@ -32,7 +42,7 @@ public class CartoonDto {
 		}
 
 		public CartoonDto(int num, String days, String title, String description, String painter, String category,
-				int point, int likes, int hit, String detail_url, String image_url, String portal, String regdate,int portal_filter) {
+				int point, int likes, int hit, String detail_url, String image_url, String portal, String regdate,int portal_filter,int avg) {
 			super();
 			this.num = num;
 			this.days = days;
@@ -48,9 +58,18 @@ public class CartoonDto {
 			this.portal = portal;
 			this.regdate = regdate;
 			this.portal_filter=portal_filter;
+			this.avg = avg;
 		}
 
 
+
+		public int getGrades() {
+			return grades;
+		}
+
+		public void setGrades(int grades) {
+			this.grades = grades;
+		}
 
 		public int getNum() {
 			return num;
