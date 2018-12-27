@@ -29,10 +29,6 @@
       height:100%;
 
    }
-   image{
-      width:100%;
-      height:100%;
-   }
    #image{
       position:relative;
       height:150px;
@@ -40,8 +36,8 @@
       display:inline-block;
    }
    #searchbar{
-      top:60px;
-      width:260px;
+      top:70px;
+      width:270px;
 
    }
    #advertisement{
@@ -49,6 +45,18 @@
       width:380px;
       display:inline-block;
    }
+
+   .nav-container{
+      display:block;
+      top:120px;
+      width:100%;
+      height:50px;
+      border:1px solid white;
+
+      padding:0px;
+
+   }
+
 
    .nav-container{
       display:block;
@@ -83,7 +91,9 @@
       border: 1px solid white;
 
    }
-   .col-xs-3{
+   
+   
+   #aaaa{
 
       display:block;
       width:142px;
@@ -186,8 +196,8 @@
          <br/>
          <br/>
       </div>
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-4">
          <br/>
          <br/>
          <div style="float:right;">
@@ -276,7 +286,7 @@
             <div class="row">
             <%}%>
             <c:if test="${tmp.category eq '에피소드' }">
-               <div class="col-xs-3" id="episode">
+               <div class="col-xs-4" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -300,7 +310,7 @@
             <div class="row">
             <%}%>
             <c:if test="${tmp.category eq '스토리' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -324,7 +334,7 @@
 		            <div class="row">
 		            <%}%>
             <c:if test="${tmp.category eq '일상' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                		<%num3++; %>
@@ -349,7 +359,7 @@
 				            <div class="row">
 				            <%}%>
             <c:if test="${tmp.category eq '개그' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -375,7 +385,7 @@
 				            <div class="row">
 				            <%}%>
             <c:if test="${tmp.category eq '판타지' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -400,7 +410,7 @@
 				  <div class="row">
 				            <%}%>
             <c:if test="${tmp.category eq '액션' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -424,7 +434,7 @@
 				  <div class="row">
 		    <%}%>
             <c:if test="${tmp.category eq '드라마' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -451,7 +461,7 @@
 				  <div class="row">
 		    <%} %>
             <c:if test="${tmp.category eq '순정' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -475,7 +485,7 @@
 						  <div class="row">
 				    <%}%>
             <c:if test="${tmp.category eq '감성' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -500,7 +510,7 @@
 						  <div class="row">
 				    <%}%>
             <c:if test="${tmp.category eq '스릴러' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -524,7 +534,7 @@
 								  <div class="row">
 						    <%} %>
             <c:if test="${tmp.category eq '시대극' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>
@@ -547,7 +557,7 @@
 								  <div class="row">
 						    <%} %>
             <c:if test="${tmp.category eq '스포츠' }">
-               <div class="col-xs-3">
+               <div class="col-xs-3" id="aaaa">
                   <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                </div>

@@ -150,7 +150,8 @@
    <div class="container">
   	 <div class="body">
    		<div class="container left">
-				<h3>글작성</h3> 	
+				<h3>글작성</h3> 
+				<hr style="border:1px solid #B7B5B5;"></hr>	
 	<form action="insert.do" method="post">
 	<table class="table">
 	<tr>

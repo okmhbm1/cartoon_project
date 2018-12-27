@@ -165,6 +165,7 @@
    <div class="container">
    <div class="body">
 <h3>개인정보</h3>
+<hr style="border:1px solid #B7B5B5;"></hr>
 <table class="table">
 	<thead>
 		<tr>

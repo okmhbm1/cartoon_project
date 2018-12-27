@@ -194,6 +194,7 @@ margin-right:15px;
    <div class="container">
    <div class="body">
     <h3>${userid}님의 만화 즐겨찾기 목록</h3>	
+    <hr style="border:1px solid #B7B5B5;"></hr>
      <c:forEach items="${list2}" var="tmp" varStatus="count">
             <c:if test="${tmp.days eq 'mon' or tmp.days eq '월'}">
             <div class="leftleft">

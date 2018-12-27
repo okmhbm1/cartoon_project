@@ -182,7 +182,7 @@
                <div class="col-xs-2">
                   <a href="cartoon/detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
                   <div><a href="cartoon/detail.do?num=${tmp.num}">${tmp.title}</a></div>
-                  <div>추천수 : ${tmp.hit }</div>
+                  <div>추천수 : ${tmp.likes }</div>
                </div>
             <% if(num%6==0){%>
               </div>
@@ -288,7 +288,7 @@
 	</div><!--자유게시판 끝-->
 
 
-     <div class="col-xs-6"><h4>익명게시판</h4>
+     <div class="col-xs-6"><h4>리뷰</h4>
           <hr>
   <table class="table table-borderless">
     <tbody>
@@ -327,93 +327,7 @@
        </div> <!--익명게시판 끝-->
        </div><!-- row 닫기 -->
          
-      
 
-      <div class="row ">
-         <div class="col-xs-6"><h4>리뷰</h4>
-          <hr>
-  		<table class="table table-borderless ">
-
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-      
-    </tbody>
-  </table>
-   </div>
-  <!--리뷰 게시판 끝-->
-
-  
-  <div class="col-xs-6">
-  	<h4>질문게시판</h4>
-          <hr>
-  <table class="table table-borderless">
-
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-      
-    </tbody>
-  </table>	
-
-	</div> <!--질문 게시판 끝-->
-	</div><!-- row 닫기 -->
 	</div><!-- conleft 닫기 -->
 	</div><!-- body 닫기 -->
 	</div><!-- 총 container 닫기 -->

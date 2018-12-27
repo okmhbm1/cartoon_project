@@ -151,7 +151,8 @@
    		<div class="container left">
 				
 			
-					<h3>리뷰</h3> 
+					<h3>리뷰</h3>
+					<hr style="border:1px solid #B7B5B5;"></hr> 
 		<table class="table table-hover" >
 	<tbody>
 		<tr align="center">

@@ -196,10 +196,8 @@
   	 <div class="body">
    		<div class="container left">
 	<a href="list.do"><button class="btn btn-default">글 목록보기</button></a>
-	<c:if test="${not empty keyword }">
-		<p> <strong>${keyword }</strong> 검색어로 검색된 결과 입니다.</p>
-	</c:if>
 	<h3>상세 보기</h3>
+	<hr style="border:1px solid #B7B5B5;"></hr>
 	<c:if test="${dto.prevNum ne 0 }">
 	<%-- 	<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-primary btn-xs">이전글</button></a> --%>
 	</c:if>
@@ -279,7 +277,7 @@
 							<input type="hidden" name="target_id" value="${tmp.writer }" />
 							<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
 							<textarea name="content"><c:if test="${empty userid }">로그인이 필요합니다.</c:if></textarea>
-							<button type="submit">답글등록</button>
+							<button type="submit" class="abc">답글등록</button>
 						</form>	
 						<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
 						<c:if test="${userid eq tmp.writer }">
@@ -453,9 +451,9 @@
 		//로그인 여부
 		 var isLogin=${not empty userid};
 		if(isLogin==false){
-			alert("로그인 페이지로 이동 합니다.");
-			location.href="${pageContext.request.contextPath}/member/loginform.do?url=${pageContext.request.contextPath}/board_review/detail.do?num=${dto.num}"; 
-			return true;//폼 전송 막기 
+			alert("로그인이 필요합니다.");
+			location.href="#"; 
+			return false;//폼 전송 막기 
 		}
 	});  
 

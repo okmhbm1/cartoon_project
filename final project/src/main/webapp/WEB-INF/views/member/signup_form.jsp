@@ -165,6 +165,7 @@
    <div class="container">
    <div class="body">
 	<h3>회원가입 </h3>
+	<hr style="border:1px solid #B7B5B5;"></hr>
 	<!-- novalidate 는 웹브라우저의 기본 validate 를 막는다 -->
 	<form action="signup.do" method="post" name="f" id="signupForm" novalidate>
 

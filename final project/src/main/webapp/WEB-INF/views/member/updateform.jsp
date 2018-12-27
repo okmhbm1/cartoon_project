@@ -165,6 +165,7 @@
    <div class="container">
    <div class="body">
 <h3>개인정보 수정</h3>
+<hr style="border:1px solid #B7B5B5;"></hr>
 <form action="update.do" method="post" id="updateForm">
 <table class="table">
 	<thead>

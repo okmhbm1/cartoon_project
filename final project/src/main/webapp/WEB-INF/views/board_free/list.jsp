@@ -152,6 +152,7 @@
 				
 			
 					<h3>자유게시판</h3> 
+					<hr style="border:1px solid #B7B5B5;"></hr>
 		<table class="table table-hover" >
 	<tbody>
 		<tr align="center">

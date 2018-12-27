@@ -181,8 +181,8 @@
          <br/>
 
       </div>
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-4">
          <br/>
          <br/>
          <div style="float:right;">
@@ -260,6 +260,7 @@
 
       <div class="row">      
       <div class="recomm">종합 추천 순위</div>
+      <hr style="border:1px solid #B7B5B5;"></hr>
       <c:forEach items="${list }" var="tmp">
             
                <div class="col-xs-2">

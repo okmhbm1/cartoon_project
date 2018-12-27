@@ -180,8 +180,8 @@
          <br/>
          <br/>
       </div>
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-4">
          <br/>
          <br/>
          <div style="float:right;">
@@ -259,7 +259,7 @@
 
       <div class="row">
       <div class="col-xs-6">      
-      <div class="recomm">남자 추천 순위</div>
+      <div class="recomm">남자 추천 순위
       <c:forEach items="${list }" var="tmp">
             <c:if test="${tmp.gender  eq 'man'}" >
                <div class="col-xs-2">
@@ -267,15 +267,15 @@
                   <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
                   <div>종합점수 : ${tmp.grades }점</div>
                </div>
-               </c:if>
-            
+               </c:if>      
       </c:forEach>
+      </div>
       </div>   
       <!--row-->
 
 
       <div class="col-xs-6">      
-      <div class="recomm">여자 추천 순위</div>
+      <div class="recomm">여자 추천 순위
       <c:forEach items="${list }" var="tmp">
             	<c:if test="${tmp.gender  eq 'woman'}" >
                <div class="col-xs-2">
@@ -285,6 +285,7 @@
                </div>
             	</c:if>
       </c:forEach>
+      </div>
       </div>   
       </div><!--row-->
       

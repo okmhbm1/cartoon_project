@@ -202,6 +202,7 @@
    		<div class="container left">
    	<a href="list.do"><button class="btn btn-default">글 목록보기</button></a>
 	<h3>상세 보기</h3>
+	<hr style="border:1px solid #B7B5B5;"></hr>
 	<c:if test="${dto.prevNum ne 0 }">
 	<%-- 	<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-primary btn-xs">이전글</button></a> --%>
 	</c:if>
@@ -451,9 +452,9 @@
 		//로그인 여부
 		 var isLogin=${not empty userid};
 		if(isLogin==false){
-			alert("로그인 페이지로 이동 합니다.");
-			location.href="${pageContext.request.contextPath}/member/loginform.do?url=${pageContext.request.contextPath}/board_review/detail.do?num=${dto.num}"; 
-			return true;//폼 전송 막기 
+			alert("로그인이 필요합니다.");
+			location.href="#"; 
+			return false;//폼 전송 막기 
 		}
 	});  
 
