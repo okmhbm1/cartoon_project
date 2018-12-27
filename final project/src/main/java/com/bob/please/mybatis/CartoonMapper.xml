@@ -18,13 +18,13 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       
       <!-- 메인 페이지 순수 추천순위별 만화 12개 출력 -->
       <select id="recommendlist" resultType="cartoondto">
-      	select * from cartoon order by likes desc LIMIT 0,12 <!-- a.* 목록에 hit가 있음 -->
+         select * from cartoon order by likes desc LIMIT 0,12 <!-- a.* 목록에 hit가 있음 -->
       </select>
       
       <!-- 최근 1주일 종합 점수 10등까지 출력-->
       <select id="recommendoneweeklist" resultType="cartoondto">
-      	select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from cartoon as a join 
- 		cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc limit 0,10) as f where regdate > date_add(now(),interval -7 day) 
+         select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from cartoon as a join 
+       cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc limit 0,10) as f where regdate > date_add(now(),interval -7 day) 
       </select>
       
    <!-- 전체 리스트 보기 -->
@@ -51,8 +51,8 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       
       <select id="select_sort_by_recommend" parameterType="selectcartooninfodto" resultType="selectcartooninfodto">
          select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from cartoon as a join 
- 		cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc) as f 		
- 		<where>
+       cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc) as f       
+       <where>
                <if test="portal_filter == 1">
                    portal = 'naver'
                </if>
@@ -70,9 +70,9 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       <!-- 성별 추천+점수 순위별 필터 -->
       
       <select id="select_sort_by_gender" parameterType="selectcartooninfodto" resultType="selectcartooninfodto">
-      		select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from 
-			cartoon as a join cartoon_point as b on a.num=b.cartoon_num)as f group by gender,num order by grades desc  
-			<where>
+            select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from 
+         cartoon as a join cartoon_point as b on a.num=b.cartoon_num)as f group by gender,num order by grades desc  
+         <where>
                <if test="portal_filter == 1">
                    portal = 'naver'
                </if>
@@ -111,7 +111,7 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       <!-- 만호 선택 후 detail -->
       <select id="selectdetail" parameterType="int" resultType="cartoondto">
           select a.*, sum(b.point)/count(b.cartoon_num) avg from cartoon as a join 
- 		cartoon_point as b on a.num=#{num} and a.num=b.cartoon_num
+       cartoon_point as b on a.num=#{num} and a.num=b.cartoon_num
       </select>
       
       
@@ -141,13 +141,13 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
      <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
         select cartoon_num,userid,point,good,notgood,comment,regdate from cartoon_point where cartoon_num=#{cartoon_num}
         <if test="param == 'recommend'">
-        	order by good desc
+           order by good desc
         </if>
         <if  test="param == 'not_recommend'">
-        	order by notgood desc
+           order by notgood desc
         </if>
         <if test="param == 'latest'">
-        	order by regdate desc
+           order by regdate desc
         </if>
         </select> 
         
@@ -167,11 +167,11 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
      
      <!-- 즐겨찾기 데이터 입력-->
      <insert id="insert_member_link" parameterType="memberlinkdto">
-     		insert into member_link (cartoon_num,days,userid,detail_url) value(#{cartoon_num},#{days},#{userid},#{detail_url})
+           insert into member_link (cartoon_num,days,userid,detail_url) value(#{cartoon_num},#{days},#{userid},#{detail_url})
      </insert>
      
      <select id="select_member_link_all" parameterType="memberlinkdto" resultType="memberlinkdto">
-     		select num,days,cartoon_num,userid,detail_url from member_link where userid=#{userid}
+           select num,days,cartoon_num,userid,detail_url from member_link where userid=#{userid}
      </select>
      
      <update id="updategood" parameterType="cartooncommentdto">
@@ -187,7 +187,7 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
            insert into onelike_or_dislike(cartoon_num,userid,is_selected,uploaderid) value(#{cartoon_num},#{userid},#{is_selected},#{uploaderid})
      </insert>
      
-     	<!-- 추천 데이터 입력, gender도 넣어야함 -->
+        <!-- 추천 데이터 입력, gender도 넣어야함 -->
      <select id="insert_recomm" parameterType="cartoonlikedto">
            insert into cartoon_recomm(cartoon_num,userid,recomm,gender,age) 
            value(#{cartoon_num},#{userid},1,(select gender from member where userid=#{userid}),(select age from member where age=#{age}))
@@ -201,14 +201,13 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       select num,detail_url,image_url,title from cartoon where title LIKE CONCAT('%',#{title},'%')
      </select>
 
-	
+   
     <select id="is_saved" parameterType="cartooncommentdto" resultType="int">
-     	select COALESCE(count(*),0) from cartoon_point where userid=#{userid} and cartoon_num=#{cartoon_num}
+        select COALESCE(count(*),0) from cartoon_point where userid=#{userid} and cartoon_num=#{cartoon_num}
      </select>
     
       
 </mapper>
-
 
 
 
