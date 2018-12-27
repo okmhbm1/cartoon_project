@@ -149,7 +149,7 @@
    <div class="container">
   	 <div class="body">
    		<div class="container left">
-	<a href="list.do"><button class="btn btn-info">글 목록보기</button></a>
+	<a href="list.do"><button class="btn btn-default">글 목록보기</button></a>
 	<c:if test="${not empty keyword }">
 		<p> <strong>${keyword }</strong> 검색어로 검색된 결과 입니다.</p>
 	</c:if>
@@ -160,30 +160,37 @@
 	<c:if test="${dto.nextNum ne 0 }">
 	<%-- 	<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-danger btn-xs">다음글</button></a> --%>
 	</c:if>
-	<table class="table table-bordered table-condensed">
-		<tr>
-			<th>글번호</th>
-			<td>${dto.num }</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${dto.writer }</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${dto.viewCount }</td>
-		</tr>
-		<tr>
-			<th>등록일</th>
-			<td>${dto.regdate }</td>
-		</tr>
-	</table>
-	<div class="content">${dto.content }</div>
-	<!-- 로그인된 아이디와 글작성자가 같을때만 수정, 삭제 링크 제공 -->
-	<c:if test="${ sessionScope.id eq dto.writer }">
-		<a href="updateform.do?num=${dto.num }">수정</a>
-		<a href="javascript:deleteConfirm(${dto.num })">삭제</a>
+
+	<table class="table">
+	<tr>
+		<th>글번호</th>
+		<td>${dto.num }</td>
+	</tr>
+	<tr>
+		<th>작성자</th>
+		<td>${dto.writer }</td>
+	</tr>
+	<tr>
+		<th>제목</th>
+		<td>${dto.title }</td>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td><textarea  cols="100" rows="13" disabled>${dto.content}</textarea></td>
+	</tr>
+	<tr>
+	<td colspan="2">	<!-- 로그인된 아이디와 글작성자가 같을때만 수정, 삭제 링크 제공 -->
+	<c:if test="${ sessionScope.userid eq dto.writer }">
+		<a href="updateform.do?num=${dto.num }" class="btn btn-default">수정</a>
+		<a href="javascript:deleteConfirm(${dto.num })" class="btn btn-default">삭제</a>
 	</c:if>
+	</td>
+	</tr>
+	<tr>
+		<th>등록일</th>
+		<td>${dto.regdate}</td>
+	</tr>
+	</table>
 	<!-- 댓글 목록 -->
 	<div class="comments">
 		<ul>
@@ -346,29 +353,37 @@
 		}
 	}
 </script>
- <!-- 로그인 -->
+  <!-- 로그인 -->
    <div class="section right">
     <c:choose>
    <c:when test="${empty sessionScope.userid }">
-       <form class="form-signin" action="member/login.do?url=${param.url }" method="post">
-	      	<label for="userid" class="sr-only">Your ID</label>
-	        <input type="text" id="writer" name="writer" class="form-control" placeholder="아이디" required autofocus><BR>
-	        <label for="pwd" class="sr-only">Password</label>
-	        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
-	        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox"> 기억하기 
-			          </label>
-		          	<a href="member/signup_form.do">회원가입</a>
-		        </div>
+    <br/>
+           <form class="form-signin" action="${pageContext.request.contextPath}/member/login.do?url=${param.url }" method="post">
+      <label for="userid" class="sr-only">Your ID</label>
+        <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus><BR>
+        <label for="pwd" class="sr-only">Password</label>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
+        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> 기억하기 
+          </label>
+          <a href="${pageContext.request.contextPath}/member/signup_form.do">회원가입</a>
+        </div>
       </form>
    </c:when>
    <c:otherwise>
-      <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
-      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
-         <a href="member/logout.do">로그아웃</a>
-         
+   
+   <table>
+   	<tr>
+   		<td><h3>${userid }님</h3><br /></td>
+   	</tr>
+   	<tr>
+   		<td><a href="${pageContext.request.contextPath}/member/info.do">정보수정</a> / <a href="${pageContext.request.contextPath}/cartoon/link_detail.do">즐겨찾기 목록</a></td>
+   	</tr>
+   </table>
+   <br />
+	<a href="${pageContext.request.contextPath}/member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
 
@@ -415,8 +430,8 @@
   	 </div><!--body-->
 
 <!-- jquery 로딩하기-->
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

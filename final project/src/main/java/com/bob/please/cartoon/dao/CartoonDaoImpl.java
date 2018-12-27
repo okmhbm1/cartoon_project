@@ -195,7 +195,16 @@ public class CartoonDaoImpl implements CartoonDao {
 	}
 
 
-	
+	@Override
+	   public List<CartoonDto> recommendlist() {
+	      return session.selectList("cartoon.recommendlist");
+	   }
+
+	   // 메인화면 1주일간 종합 추천 순위 10개 출력
+	@Override
+	   public List<CartoonDto> recommendoneweeklist() {
+	      return session.selectList("cartoon.recommendoneweeklist");
+	   }
 
 
 	

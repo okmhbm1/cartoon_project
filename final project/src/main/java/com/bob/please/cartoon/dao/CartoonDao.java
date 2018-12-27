@@ -77,4 +77,8 @@ public interface CartoonDao {
 	
 	public List<CartoonDto> search(String title);
 	
+	public List<CartoonDto> recommendlist();
+	
+	public List<CartoonDto> recommendoneweeklist();
+	
 }

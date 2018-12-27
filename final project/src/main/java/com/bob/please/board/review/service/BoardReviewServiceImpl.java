@@ -191,7 +191,7 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 	@Override
 	public void saveComment(HttpServletRequest request) {
 		//댓글 작성자
-			String writer=(String)request.getSession().getAttribute("id");
+			String writer=(String)request.getSession().getAttribute("userid");
 			//댓글의 그룹번호
 			int ref_group=Integer.parseInt(request.getParameter("ref_group"));
 			//댓글의 대상자 아이디

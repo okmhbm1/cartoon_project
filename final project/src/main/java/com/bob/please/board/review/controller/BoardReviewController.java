@@ -39,8 +39,8 @@ public class BoardReviewController {
 	@RequestMapping("/board_review/insert")
 	public ModelAndView Insert(@ModelAttribute BoardReviewDto dto,HttpServletRequest request) {
 		
-		String id=(String)request.getSession().getAttribute("id");
-		dto.setWriter(id);
+		String userid=(String)request.getSession().getAttribute("userid");
+		dto.setWriter(userid);
 		//새글을 저장한다. 
 		service.saveContent(dto);
 		//글 목록 보기로 리다일렉트 이동

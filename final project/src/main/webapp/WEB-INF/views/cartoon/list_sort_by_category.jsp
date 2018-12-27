@@ -158,8 +158,10 @@
       }
      
     }
-.match_parent{
-   max-width:100%
+    .match_parent {
+	width: 100px;
+	margin-top: 8px;
+	height: 110px;
 }
 
 .genre{
@@ -171,6 +173,8 @@
    
 
   <jsp:include page="/WEB-INF/views/top.jsp" flush="false" />
+
+
 
 
    <!-- 바디 -->
@@ -257,8 +261,9 @@
 
 
 
-
-      <div class="row">
+   <div class="container left">
+   
+   <div>
       <%List<CartoonDto> list = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list.size();i++)
         {	if(list.get(i).getCategory()!=null &&list.get(i).getCategory().equals("에피소드")){ %>      
@@ -280,9 +285,9 @@
             <%if (num%6==0) {%>
             </div><% } %>      
       </c:forEach>
-         
+      </div>   
       
-               
+      <div>  
      <%List<CartoonDto> list2 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list2.size();i++)
         {	if(list2.get(i).getCategory()!=null &&list2.get(i).getCategory().equals("스토리")){ %>      
@@ -304,8 +309,9 @@
             <%if (num2%6==0) {%>
             </div><%} %>       
       </c:forEach>
-      
-                
+      </div> 
+             
+      <div>   
       <%List<CartoonDto> list3 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list3.size();i++)
         {	if(list3.get(i).getCategory()!=null && list3.get(i).getCategory().equals("일상")){ %>      
@@ -327,10 +333,10 @@
             <%if (num3%6==0) {%>
             </div><%} %>        
       </c:forEach>
-      
+      </div>
             
             
-                  
+      <div>       
       <%List<CartoonDto> list4 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list4.size();i++)
         {	if(list4.get(i).getCategory()!=null&&list4.get(i).getCategory().equals("개그")){ %>      
@@ -352,11 +358,11 @@
             <%if (num4%6==0) {%>
             </div><%} %>        
       </c:forEach>
+      </div> 
       
       
       
-      
-        	    
+       <div>	    
       <%List<CartoonDto> list5 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list5.size();i++)
         {	if(list5.get(i).getCategory()!=null && list5.get(i).getCategory().equals("판타지")){ %>      
@@ -378,10 +384,10 @@
             <%if (num5%6==0) {%>
             </div><%} %>        
       </c:forEach>
+      </div>
       
       
-      
-            
+       <div>
       <%List<CartoonDto> list6 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list6.size();i++)
         {	if(list6.get(i).getCategory()!=null && list6.get(i).getCategory().equals("액션")){ %>      
@@ -403,9 +409,9 @@
             <%if (num6%6==0) {%>
             </div><%} %>          
       </c:forEach>
+      </div>  
       
-      
-                
+      <div>      
       <%List<CartoonDto> list7= (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list6.size();i++)
         {	if(list7.get(i).getCategory()!=null && list7.get(i).getCategory().equals("드라마")){ %>      
@@ -428,11 +434,11 @@
             </div>
             <%} %>       
       </c:forEach>
-      
+      </div>
         
         
        
-            
+      <div>
         <%List<CartoonDto> list8 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list8.size();i++)
         {	if(list8.get(i).getCategory()!=null && list8.get(i).getCategory().equals("순정")){ %>      
@@ -454,9 +460,9 @@
             <%if (num8%6==0) {%>
             </div><%}  %>       
       </c:forEach>
-     
+     </div> 
       
-       
+       <div>
       <%List<CartoonDto> list9 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list9.size();i++)
         {	if(list9.get(i).getCategory()!=null && list9.get(i).getCategory().equals("감성")){ %>      
@@ -478,10 +484,10 @@
             <%if (num9%6==0) {%>
             </div><%} %>      
       </c:forEach>
-      
+      </div>
         
         
-       
+       <div>
         <%List<CartoonDto> list10 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list10.size();i++)
         {	if(list10.get(i).getCategory()!=null && list10.get(i).getCategory().equals("스릴러")){ %>      
@@ -489,7 +495,6 @@
       	<%   break;} 
       	}%>
       	<%int num10=0; %>      
-      <div class="genre">스릴러</div>
       <c:forEach items="${list1 }" var="tmp">
       		<%if (num10%6==0){ %>
 						  <div class="row">
@@ -504,9 +509,9 @@
             <%if (num10%6==0) {%>
             </div><%}  %>      
       </c:forEach>
-        
+       </div> 
       
-      
+      <div>
       <%List<CartoonDto> list11 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list11.size();i++)
         {	if(list11.get(i).getCategory()!=null && list11.get(i).getCategory().equals("시대극")){ %>      
@@ -528,7 +533,8 @@
             <%if (num11%6==0) {%>
             </div><%}  %>       
       </c:forEach>
-           
+      </div>
+      <div>
 		<%List<CartoonDto> list12 = (List<CartoonDto>)request.getAttribute("list1");
         for(int i=0;i<(Integer)list12.size();i++)
         {	if(list12.get(i).getCategory()!=null && list12.get(i).getCategory().equals("스포츠")){ %>      
@@ -550,7 +556,7 @@
             <%if (num12%6==0) {%>
             </div><%} %>         
       </c:forEach>
-     </div><!-- 만화 목록 감싸는 row -->
+      </div>
   </div><!--body 끝-->
 </div> <!--container-->
       

@@ -12,7 +12,7 @@
       <div id="header">
       <!-- 메인배너 -->
       <div class="row">
-      	<div class="col-xs-4" id="image"> <a href="${pageContext.request.contextPath}/home.do"><img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></a></div>
+      	<div class="col-xs-4" id="image"> <a href="${pageContext.request.contextPath}/home.do"><img class="image" src="${pageContext.request.contextPath}/resources/images/banner.png"/></a></div>
 		
 
 	  <!--헤더 서치바-->   
@@ -34,7 +34,7 @@
 
 
      <!-- 광고 -->
-   	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
+   	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.png"/></div>
    	</div>
    	</div>
    </div>
@@ -55,6 +55,7 @@
           </ul>
         </li>
       </ul>
+      <a  href="${pageContext.request.contextPath}/administer/administer_page.do" class="navbar-brand">관리자 페이지</a>
 	   </div>
    </div> <!--네비바 -->
  

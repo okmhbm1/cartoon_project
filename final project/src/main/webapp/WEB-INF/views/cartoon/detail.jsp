@@ -194,7 +194,7 @@
          
       </div>
       <br/>
-         <hr style="border:2px solid #B7B5B5;">
+         <hr style="border:1px solid #B7B5B5;">
     <div class="row" style="text-align: center">
          <div class="star" class="col-xs-5" style="color:red;">
 	         <span  id="star1">☆</span>
@@ -234,7 +234,7 @@
           </div>
     </div><!--row 끝-->
             
-         <hr style="border:2px solid #B7B5B5;">
+         <hr style="border:1px solid #B7B5B5;">
 
 
 

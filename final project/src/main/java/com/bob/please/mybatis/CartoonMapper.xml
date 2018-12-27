@@ -181,6 +181,17 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       select num,detail_url,image_url,title from cartoon where title LIKE CONCAT('%',#{title},'%')
      </select>
 
+      <!-- 메인 페이지 순수 추천순위별 만화 12개 출력 -->
+      <select id="recommendlist" resultType="cartoondto">
+         select * from cartoon order by hit desc LIMIT 0,12 <!-- a.* 목록에 hit가 있음 -->
+      </select>
+      
+      <!-- 최근 1주일 종합 점수 10등까지 출력-->
+      <select id="recommendoneweeklist" resultType="cartoondto">
+         select * from (select a.*, sum(b.point)/count(a.num)+a.likes+a.hit grades, b.gender gender from cartoon as a join 
+       cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc limit 0,10) as f where regdate > date_add(now(),interval -7 day) 
+      </select>
+      
 </mapper>
 
 

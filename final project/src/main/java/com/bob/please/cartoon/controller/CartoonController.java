@@ -39,11 +39,15 @@ public class CartoonController {
 	@Autowired
 	MemberService service2;
 	
-	@RequestMapping("/home.do")
-	public String home(ModelAndView mView) {
-		
-		return "home";
-	}
+	   @RequestMapping("/home.do")
+	   public String home(HttpServletRequest request) {
+	      
+	      //추천수 기준 순위별 만화 출력
+	      service.recommendlist(request);
+	      // 1주일동안 종합 순위별 만화 출력
+	      service.recommendoneweeklist(request);
+	      return "home";
+	   }
 
 	
 	@RequestMapping("/cartoon/list.do")

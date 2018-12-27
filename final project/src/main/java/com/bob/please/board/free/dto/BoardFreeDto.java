@@ -2,6 +2,7 @@ package com.bob.please.board.free.dto;
 
 public class BoardFreeDto {
 	private int num;
+	private String userid;
 	private String writer;
 	private String title;
 	private String content;
@@ -18,10 +19,11 @@ public class BoardFreeDto {
 	
 	public BoardFreeDto() {}
 
-	public BoardFreeDto(int num, String writer, String title, String content, int viewCount, int recommend,
-			int likeCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+	public BoardFreeDto(int num, String userid, String writer, String title, String content, int viewCount,
+			int recommend, int likeCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
+		this.userid = userid;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
@@ -41,6 +43,14 @@ public class BoardFreeDto {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getWriter() {
@@ -130,5 +140,7 @@ public class BoardFreeDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
+
+
 	
 }

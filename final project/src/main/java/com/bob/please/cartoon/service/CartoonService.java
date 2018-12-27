@@ -62,4 +62,8 @@ public interface CartoonService {
 	
 	public void search(String title,HttpServletRequest request);
 	
+	public void recommendlist(HttpServletRequest request);
+	
+	public void recommendoneweeklist(HttpServletRequest request);
+	
 }

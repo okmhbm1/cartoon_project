@@ -318,6 +318,21 @@ public class CartoonServiceImpl implements CartoonService{
 		
 		
 	}
+	
+	@Override
+	   public void recommendlist(HttpServletRequest request) {
+	      
+	      List<CartoonDto> list = dao.recommendlist();
+	      request.setAttribute("recommendlist", list);
+	   }
+
+	@Override
+	   public void recommendoneweeklist(HttpServletRequest request) {
+	      
+	      List<CartoonDto> list = dao.recommendoneweeklist();
+	      request.setAttribute("recommendoneweeklist", list);
+	      
+	   }
 
 
 

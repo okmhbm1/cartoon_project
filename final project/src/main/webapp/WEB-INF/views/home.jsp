@@ -99,8 +99,7 @@
    }
 
    .box{
-      width:50%;
-      height:30%;
+      	margin-bottom: 5px;
    }
    .no-border{
             border-right:none
@@ -152,6 +151,13 @@
       }
      
     }
+    
+    .match_parent {
+	width: 100px;
+	margin-top: 8px;
+	height: 110px;
+}
+
 </style>
 <body>
    
@@ -163,33 +169,36 @@
    <!-- 바디 -->
    <div class="container">
    <div class="body">
+   <div class="box">
    <div class="container left">
       <h3>종합 인기순</h3>
-      <hr></hr>
-      <div class="row ">
-         <div class="col-xs-2">1</div>
-         <div class="col-xs-2">2</div>
-         <div class="col-xs-2">3</div>
-         <div class="col-xs-2">4</div>
-         <div class="col-xs-2">5</div>
-         <div class="col-xs-2">6</div>
-      </div>
-      <div class="row ">
-         <div class="col-xs-2">1</div>
-         <div class="col-xs-2">2</div>
-         <div class="col-xs-2">3</div>
-         <div class="col-xs-2">4</div>
-         <div class="col-xs-2">5</div>
-         <div class="col-xs-2">6</div>
-      </div>
+      <hr style="border:1px solid #B7B5B5;"></hr>
+          <%int num=0; %>
+         <c:forEach items="${recommendlist }" var="tmp">
+            <% if(num%6==0){ %>
+              <div class="row">
+            <%} num++; %>    
+         
+               <div class="col-xs-2">
+                  <a href="cartoon/detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="cartoon/detail.do?num=${tmp.num}">${tmp.title}</a></div>
+                  <div>추천수 : ${tmp.hit }</div>
+               </div>
+            <% if(num%6==0){%>
+              </div>
+            <%} %>
+          </c:forEach>
    </div> <!-- container left-->
+   </div>
+
 
 
    <!-- 로그인 -->
    <div class="section right">
     <c:choose>
    <c:when test="${empty sessionScope.userid }">
-           <form class="form-signin" action="member/login.do?url=${param.url }" method="post">
+    <br/>
+           <form class="form-signin" action="${pageContext.request.contextPath}/member/login.do?url=${param.url }" method="post">
       <label for="userid" class="sr-only">Your ID</label>
         <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus><BR>
         <label for="pwd" class="sr-only">Password</label>
@@ -199,7 +208,7 @@
           <label>
             <input type="checkbox"> 기억하기 
           </label>
-          <a href="member/signup_form.do">회원가입</a>
+          <a href="${pageContext.request.contextPath}/member/signup_form.do">회원가입</a>
         </div>
       </form>
    </c:when>
@@ -210,51 +219,26 @@
    		<td><h3>${userid }님</h3><br /></td>
    	</tr>
    	<tr>
-   		<td><a href="member/info.do">정보수정</a> / <a href="cartoon/link_detail.do">즐겨찾기 목록</a></td>
+   		<td><a href="${pageContext.request.contextPath}/member/info.do">정보수정</a> / <a href="${pageContext.request.contextPath}/cartoon/link_detail.do">즐겨찾기 목록</a></td>
    	</tr>
    </table>
    <br />
-	<a href="member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
+	<a href="${pageContext.request.contextPath}/member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
 
-
      <!--주간/월간 순위-->
-    <h3>주간/월간 순위</h3>
-  <table class="table table-striped table-condensed">
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-    </tbody>
-  </table>
+    <h3>주간TOP10</h3>
+        <%int num10=1; %>
+<c:forEach items="${recommendoneweeklist }" var="tmp">
+            
+               <div class="col-xs-2">
+                  
+                  <div><a href="cartoon/detail.do?num=${tmp.num}"><%=num10 %>${tmp.title}</a></div>
+                  
+               </div>
+               <%num10++; %>
+          </c:forEach>
    	</div> <!-- section--> 
    </div><!-- body닫기 -->
 
@@ -262,8 +246,7 @@
    	<!--게시판 모음-->
       <div class="body">
    <div class="container left">
-      <h3>게시판</h3>
-      <hr></hr>
+  <hr style="border:1px solid #B7B5B5;"></hr>
       <div class="row ">
 
          <div class="col-xs-6"><h4>자유게시판</h4>

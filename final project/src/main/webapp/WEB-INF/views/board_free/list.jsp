@@ -152,29 +152,29 @@
 				
 			
 					<h3>자유게시판</h3> 
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>작성자</th>
-								<th>제목</th>
-								<th>조회수</th>
-								<th>등록일</th>
-							</tr>
-						</thead>
-						<tbody>
+		<table class="table table-hover" >
+	<tbody>
+		<tr align="center">
+			<td>번호</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>작성일</td>
+			<td>조회수</td>
+		</tr>
+	</tbody>
+	<tbody>
 						<c:forEach items="${list }" var="tmp">
-							<tr>
+							<tr align="center">
 								<td>${tmp.num }</td>
-								<td>${tmp.writer }</td>
 								<td><a href="detail.do?num=${tmp.num }&condition=${condition}&keyword=${encodedKeyword}">${tmp.title }</a></td>
-								<td>${tmp.viewCount }</td>
+								<td>${tmp.writer }</td>
 								<td>${tmp.regdate }</td>
+								<td>${tmp.viewCount }</td>
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
-					<a href="insertform.do"><h4>게시글 작성</h4></a> 
+					<a href="insertform.do" class ="btn btn-default">글 작성</a>
 					<div class="page-display">
 						<ul class="pagination">
 						<c:choose>
@@ -218,15 +218,15 @@
 						</c:choose>
 						</ul>
 					</div>
-					<form action="list.do" method="get">
+					<form action="list.do" method="get" class="form-horizontal">
 						<label for="condition">검색조건</label>
 						<select name="condition" id="condition">
 							<option value="titlecontent" <c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
 							<option value="title" <c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
 							<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
 						</select>
-						<input value="${keyword }" type="text" name="keyword" placeholder="검색어..."/>
-						<button type="submit">검색</button>
+						<input value="${keyword }" type="text" name="keyword" placeholder="검색"/>
+						<button type="submit" class ="btn btn-default">검색</button>
 					</form>
 					<c:if test="${not empty keyword }">
 						<p> <strong>${keyword }</strong> 라는 키워드로 
@@ -235,29 +235,37 @@
    		</div> <!-- container left-->
 
 
-   <!-- 로그인 -->
+  <!-- 로그인 -->
    <div class="section right">
     <c:choose>
    <c:when test="${empty sessionScope.userid }">
-       <form class="form-signin" action="member/login.do?url=${param.url }" method="post">
-	      	<label for="userid" class="sr-only">Your ID</label>
-	        <input type="text" id="writer" name="writer" class="form-control" placeholder="아이디" required autofocus><BR>
-	        <label for="pwd" class="sr-only">Password</label>
-	        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
-	        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox"> 기억하기 
-			          </label>
-		          	<a href="member/signup_form.do">회원가입</a>
-		        </div>
+    <br/>
+           <form class="form-signin" action="${pageContext.request.contextPath}/member/login.do?url=${param.url }" method="post">
+      <label for="userid" class="sr-only">Your ID</label>
+        <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus><BR>
+        <label for="pwd" class="sr-only">Password</label>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
+        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> 기억하기 
+          </label>
+          <a href="${pageContext.request.contextPath}/member/signup_form.do">회원가입</a>
+        </div>
       </form>
    </c:when>
    <c:otherwise>
-      <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
-      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
-         <a href="../member/logout.do">로그아웃</a>
-         
+   
+   <table>
+   	<tr>
+   		<td><h3>${userid }님</h3><br /></td>
+   	</tr>
+   	<tr>
+   		<td><a href="${pageContext.request.contextPath}/member/info.do">정보수정</a> / <a href="${pageContext.request.contextPath}/cartoon/link_detail.do">즐겨찾기 목록</a></td>
+   	</tr>
+   </table>
+   <br />
+	<a href="${pageContext.request.contextPath}/member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
 

@@ -74,29 +74,28 @@
 	<c:if test="${dto.nextNum ne 0 }">
 	<%-- 	<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-danger btn-xs">다음글</button></a> --%>
 	</c:if>
-	<table class="table table-bordered table-condensed">
-		<tr>
-			<th>글번호</th>
-			<td>${dto.num }</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${dto.writer }</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${dto.viewCount }</td>
-		</tr>
-		<tr>
-			<th>등록일</th>
-			<td>${dto.regdate }</td>
-		</tr>
+	<table class="table">
+	<tr>
+		<th>글번호</th>
+		<td>${dto.num }</td>
+	</tr>
+	<tr>
+		<th>작성자</th>
+		<td>${dto.writer }</td>
+	</tr>
+	<tr>
+		<th>제목</th>
+		<td>${dto.title }</td>
+	</tr>
+	<tr>
+		<th>등록일</th>
+		<td>${dto.regdate}</td>
+	</tr>
 	</table>
 	<div class="content">${dto.content }</div>
-	<!-- 로그인된 아이디와 글작성자가 같을때만 수정, 삭제 링크 제공 -->
-	<c:if test="${ sessionScope.userid eq dto.writer }">
-		<a href="updateform.do?num=${dto.num }">수정</a>
-		<a href="javascript:deleteConfirm(${dto.num })">삭제</a>
+		<c:if test="${ sessionScope.userid eq dto.writer }">
+		<a href="updateform.do?num=${dto.num }" class="btn btn-default">수정</a>
+		<a href="javascript:deleteConfirm(${dto.num })" class="btn btn-default">삭제</a>
 	</c:if>
 	<!-- 댓글 목록 -->
 	<div class="comments">
@@ -138,7 +137,7 @@
 							<input type="hidden" name="target_id" value="${tmp.writer }" />
 							<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
 							<textarea name="content"><c:if test="${empty userid }">로그인이 필요합니다.</c:if></textarea>
-							<button type="submit">등록</button>
+							<button type="submit">답글등록</button>
 						</form>	
 						<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
 						<c:if test="${userid eq tmp.writer }">
@@ -259,6 +258,10 @@
 		}
 	}
 </script>
+<!-- jquery 로딩하기-->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
 
