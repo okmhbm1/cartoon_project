@@ -151,7 +151,7 @@
    		<div class="container left">
 				
 			
-					<h3>자유게시판</h3> 
+					<h3>리뷰</h3> 
 		<table class="table table-hover" >
 	<tbody>
 		<tr align="center">

@@ -149,7 +149,7 @@
    <div class="container">
   	 <div class="body">
    		<div class="container left">
-				<h3>글작성</h3> 	
+				<h3>글정보수정</h3> 	
 	<form action="insert.do" method="post">
 	<table class="table">
 	<tr>

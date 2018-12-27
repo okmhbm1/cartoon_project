@@ -46,15 +46,8 @@
 	   <div class="navbar navbar-inverse">
 	      <a href="${pageContext.request.contextPath}/cartoon/list.do" class="navbar-brand">웹툰</a>
 	      <a  href="${pageContext.request.contextPath}/board_review/list.do" class="navbar-brand">리뷰</a>
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">게시판<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="${pageContext.request.contextPath}/board_free/list.do" class="navbar-brand">유저게시판</a></li>
-            <li><a href="#">요청게시판</a></li>
-          </ul>
-        </li>
-      </ul>
+	      <a  href="${pageContext.request.contextPath}/board_free/list.do" class="navbar-brand">자유게시판</a>
+
       <a  href="${pageContext.request.contextPath}/administer/administer_page.do" class="navbar-brand">관리자 페이지</a>
 	   </div>
    </div> <!--네비바 -->
