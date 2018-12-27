@@ -153,6 +153,12 @@
       }
      
     }
+    
+    
+    	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body ng-controller="myCtrl">
    
@@ -165,7 +171,7 @@
    <div class="container">
    <div class="body">
 	<h3>회원가입 </h3>
-	<hr style="border:1px solid #B7B5B5;"></hr>
+	<hr style="border:1px solid black;"></hr>
 	<!-- novalidate 는 웹브라우저의 기본 validate 를 막는다 -->
 	<form action="signup.do" method="post" name="f" id="signupForm" novalidate>
 

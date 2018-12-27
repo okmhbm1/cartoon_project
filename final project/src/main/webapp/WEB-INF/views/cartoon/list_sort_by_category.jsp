@@ -178,6 +178,11 @@
    font-size:25px;
    color:blue;
 }
+
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
    

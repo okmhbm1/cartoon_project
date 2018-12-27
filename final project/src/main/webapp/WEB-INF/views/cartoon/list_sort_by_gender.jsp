@@ -164,6 +164,11 @@
    font-size:25px;
    color:blue;
 }
+
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
    
@@ -259,7 +264,10 @@
 
       <div class="row">
       <div class="col-xs-6">      
-      <div class="recomm">남자 추천 순위
+      <div class="recomm">
+      	<h4>남자 추천 순위</h4>
+      	<hr style="border:1px solid black;"></hr>
+      	<div>
       <c:forEach items="${list }" var="tmp">
             <c:if test="${tmp.gender  eq 'man'}" >
                <div class="col-xs-2">
@@ -270,12 +278,16 @@
                </c:if>      
       </c:forEach>
       </div>
+      </div>
       </div>   
       <!--row-->
 
 
       <div class="col-xs-6">      
-      <div class="recomm">여자 추천 순위
+      <div class="recomm">
+      	<h4>여자 추천 순위</h4>
+      	<hr style="border:1px solid black;"></hr>
+      	<div>
       <c:forEach items="${list }" var="tmp">
             	<c:if test="${tmp.gender  eq 'woman'}" >
                <div class="col-xs-2">
@@ -285,6 +297,7 @@
                </div>
             	</c:if>
       </c:forEach>
+      </div>
       </div>
       </div>   
       </div><!--row-->

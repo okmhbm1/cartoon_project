@@ -16,21 +16,29 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.board.free.dto.BoardFreeCommentDto;
 import com.bob.please.board.free.dto.BoardFreeDto;
 import com.bob.please.board.free.service.BoardFreeService;
+import com.bob.please.cartoon.service.CartoonService;
 
 @Controller
 public class BoardFreeController {
 	@Autowired
 	private BoardFreeService service;
+	@Autowired
+	CartoonService service2;
 	
 	@RequestMapping("/board_free/list")
 	public ModelAndView getList(HttpServletRequest request) {
 		//HttpServletRequest 객체를 전달해서 필요한 모델이 담기게 한다. 
 		service.getList(request);
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		//view 페이지로 forward 이동해서 글 목록 출력하기 
 		return new ModelAndView("board_free/list");
+		
 	}
 	@RequestMapping("/board_free/insertform")
 	public ModelAndView Insertform(HttpServletRequest request) {
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		//view 페이지로 forward 이동해서 새글 작성 폼 출력하기 
 		return new ModelAndView("board_free/insertform");
 	}
@@ -40,7 +48,8 @@ public class BoardFreeController {
 		/*String id=(String)request.getSession().getAttribute("id");*/
 		System.out.println(dto.getWriter()+"첫번째");
 		dto.setWriter(dto.getWriter());
-
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		//새글을 저장한다. 
 		service.saveContent(dto);
 		//글 목록 보기로 리다일렉트 이동
@@ -48,6 +57,8 @@ public class BoardFreeController {
 	}
 	@RequestMapping("/board_free/detail")
 	public ModelAndView detail(HttpServletRequest request) {
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		service.getDetail(request);
 		return new ModelAndView("board_free/detail");
 	}
@@ -60,6 +71,8 @@ public class BoardFreeController {
 	public ModelAndView UpdateForm(ModelAndView mView, @RequestParam int num, 
 			HttpServletRequest request) {
 		service.getUpdateData(mView, num);
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		mView.setViewName("board_free/updateform");
 		return mView;
 	}

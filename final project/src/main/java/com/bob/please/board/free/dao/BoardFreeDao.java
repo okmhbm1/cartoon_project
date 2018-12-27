@@ -14,5 +14,5 @@ public interface BoardFreeDao {
 	public void delete(int num);
 	public BoardFreeDto getData(int num);
 	public void update(BoardFreeDto dto);
-	
+	public List<BoardFreeDto> boardfreelist();
 }

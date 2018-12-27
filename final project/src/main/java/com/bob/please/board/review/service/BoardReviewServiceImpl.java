@@ -232,6 +232,14 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 		
 	}
 		
+	  //home.jsp에 리뷰게시판 최신글 출력
+	   @Override
+	   public void boardreviewlist(HttpServletRequest request) {
+	      
+	      List<BoardReviewDto> list = BoardReviewDao.boardreviewlist();
+	      request.setAttribute("boardreviewlist", list);
+	      
+	   }
 }
 
 		

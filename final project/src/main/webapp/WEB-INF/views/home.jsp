@@ -75,7 +75,6 @@
       width:20%;
       height:100%;
       border: 1px solid white;
-
    }
    .col-xs-2{
 
@@ -131,6 +130,7 @@
     margin-bottom: 0px;
 }
 
+
 .col-xs-12{
   position:relative;
 }
@@ -158,6 +158,17 @@
 	height: 110px;
 }
 
+	
+	.juganmargin{
+	float:left;
+	width:100%;
+	}
+	
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
+	
 </style>
 <body>
    
@@ -172,7 +183,7 @@
    <div class="box">
    <div class="container left">
       <h3>종합 인기순</h3>
-      <hr style="border:1px solid #B7B5B5;"></hr>
+      <hr style="border:1px solid black;"></hr>
           <%int num=0; %>
          <c:forEach items="${recommendlist }" var="tmp">
             <% if(num%6==0){ %>
@@ -195,6 +206,7 @@
 
    <!-- 로그인 -->
    <div class="section right">
+   <div class="loginmargin">
     <c:choose>
    <c:when test="${empty sessionScope.userid }">
     <br/>
@@ -213,7 +225,6 @@
       </form>
    </c:when>
    <c:otherwise>
-   
    <table>
    	<tr>
    		<td><h3>${userid }님</h3><br /></td>
@@ -226,110 +237,55 @@
 	<a href="${pageContext.request.contextPath}/member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
+   </div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+ <jsp:include page="/WEB-INF/views/rank.jsp" flush="false" />
 
-     <!--주간/월간 순위-->
-    <h3>주간TOP10</h3>
-        <%int num10=1; %>
-<c:forEach items="${recommendoneweeklist }" var="tmp">
-            
-               <div class="col-xs-2">
-                  
-                  <div><a href="cartoon/detail.do?num=${tmp.num}"><%=num10 %>${tmp.title}</a></div>
-                  
-               </div>
-               <%num10++; %>
-          </c:forEach>
-   	</div> <!-- section--> 
-   </div><!-- body닫기 -->
-
-
-   	<!--게시판 모음-->
+      <!--게시판 모음-->
       <div class="body">
    <div class="container left">
   <hr style="border:1px solid #B7B5B5;"></hr>
       <div class="row ">
 
-         <div class="col-xs-6"><h4>자유게시판</h4>
-          <hr>
-     <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-  </table>       
+         <div class="col-xs-6"><h4>자유게시판</h4>  
+     <table class="table" style="font-size:13px;">
+    <tbody> 
+    <c:forEach items="${boardlist }" var="tmp">
+                     <tr>    
+                        <td width="77%" style="text-align:left" ><a href="board_free/detail.do?num=${tmp.num}">${tmp.title }</a></td>
+                        <td  style="text-align:rigth;color:#747474;">${tmp.regdate }</td>
+                     </tr>
+   </c:forEach>
+   </tbody>
+        </table>           
 
-	</div><!--자유게시판 끝-->
+   </div><!--자유게시판 끝-->
 
 
      <div class="col-xs-6"><h4>리뷰</h4>
-          <hr>
-  <table class="table table-borderless">
+ 	<table style="font-size:13px;" class="table">
     <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
+        <c:forEach items="${boardreviewlist }" var="tmp">
+                     <tr>
+                        <td width="77%" style="text-align:left" ><a href="board_free/detail.do?num=${tmp.num}">${tmp.title }</a></td>
+                        <td style="text-align:rigth; color:#747474;">${tmp.regdate }</td>
+                     </tr>
+   		</c:forEach>
       </tbody>
-  </table>
+  		</table>
+
+
        </div> <!--익명게시판 끝-->
        </div><!-- row 닫기 -->
          
 
-	</div><!-- conleft 닫기 -->
-	</div><!-- body 닫기 -->
+   </div><!-- conleft 닫기 -->
+   </div><!-- body 닫기 -->
 	</div><!-- 총 container 닫기 -->
 
  

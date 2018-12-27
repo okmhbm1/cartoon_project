@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.board.review.dto.BoardReviewCommentDto;
 import com.bob.please.board.review.dto.BoardReviewDto;
 import com.bob.please.board.review.service.BoardReviewService;
+import com.bob.please.cartoon.service.CartoonService;
 
 
 
@@ -23,17 +24,23 @@ import com.bob.please.board.review.service.BoardReviewService;
 public class BoardReviewController {
 	@Autowired
 	private BoardReviewService service;
+	@Autowired
+	CartoonService service2;
 	
 	@RequestMapping("/board_review/list")
 	public ModelAndView getList(HttpServletRequest request) {
 		//HttpServletRequest 객체를 전달해서 필요한 모델이 담기게 한다. 
 		service.getList(request);
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		//view 페이지로 forward 이동해서 글 목록 출력하기 
 		return new ModelAndView("board_review/list");
 	}
 	@RequestMapping("/board_review/insertform")
 	public ModelAndView Insertform(HttpServletRequest request) {
 		//view 페이지로 forward 이동해서 새글 작성 폼 출력하기 
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		return new ModelAndView("board_review/insertform");
 	}
 	@RequestMapping("/board_review/insert")
@@ -49,6 +56,8 @@ public class BoardReviewController {
 	@RequestMapping("/board_review/detail")
 	public ModelAndView detail(HttpServletRequest request) {
 		service.getDetail(request);
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		return new ModelAndView("board_review/detail");
 	}
 	@RequestMapping("/board_review/delete")
@@ -60,6 +69,8 @@ public class BoardReviewController {
 	public ModelAndView UpdateForm(ModelAndView mView, @RequestParam int num, 
 			HttpServletRequest request) {
 		service.getUpdateData(mView, num);
+	    // 1주일동안 종합 순위별 만화 출력
+	    service2.recommendoneweeklist(request);
 		mView.setViewName("board_review/updateform");
 		return mView;
 	}

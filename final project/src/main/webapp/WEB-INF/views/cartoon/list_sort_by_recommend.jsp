@@ -164,6 +164,11 @@
    font-size:25px;
    color:blue;
 }
+
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
    
@@ -259,8 +264,8 @@
 
 
       <div class="row">      
-      <div class="recomm">종합 추천 순위</div>
-      <hr style="border:1px solid #B7B5B5;"></hr>
+      <div class="recomm"><h3>종합 추천 순위</h3></div>
+      <hr style="border:1px solid black;"></hr>
       <c:forEach items="${list }" var="tmp">
             
                <div class="col-xs-2">

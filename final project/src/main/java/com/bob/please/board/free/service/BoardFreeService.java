@@ -18,4 +18,5 @@ public interface BoardFreeService {
 	public void saveComment(HttpServletRequest request);
 	public void updateComment(BoardFreeCommentDto dto);
 	public void deleteComment(int num);
+	public void boardfreelist(HttpServletRequest request);
 }

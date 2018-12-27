@@ -153,6 +153,10 @@
       }
      
     }
+    	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
    
@@ -165,6 +169,7 @@
    <div class="container">
    <div class="body">
 <h3>비밀번호 수정</h3>
+<hr style="border:1px solid black;"></hr>
 <form action="update_pwd.do" method="post" id="pwdForm">
 	<label for="pwd">비밀번호</label>
 	<input type="password" name="pwd" id="pwd"/><br/>

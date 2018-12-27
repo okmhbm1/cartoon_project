@@ -160,6 +160,7 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
            select COALESCE(count(*),0) from cartoon_recomm where userid=#{userid} and cartoon_num=#{cartoon_num}
      </select>
      
+     
      <!-- 특정 만화가 특정 회원에게 링크되었는가 -->
      <select id="is_linked" parameterType="memberlinkdto" resultType="int">
            select COALESCE(count(*),0) from member_link where userid=#{userid} and cartoon_num=#{cartoon_num}
@@ -189,8 +190,8 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
      
         <!-- 추천 데이터 입력, gender도 넣어야함 -->
      <select id="insert_recomm" parameterType="cartoonlikedto">
-           insert into cartoon_recomm(cartoon_num,userid,recomm,gender,age) 
-           value(#{cartoon_num},#{userid},1,(select gender from member where userid=#{userid}),(select age from member where age=#{age}))
+                insert into cartoon_recomm(cartoon_num,userid,recomm,gender,age) 
+           value(#{cartoon_num},#{userid},1,(select gender from member where userid=#{userid}),(select age from member where age=#{age} and userid=#{userid}))
      </select>
      
      <update id="update_likes" parameterType="int">

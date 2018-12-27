@@ -153,6 +153,11 @@
       }
      
     }
+    
+    	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
    
@@ -165,7 +170,7 @@
    <div class="container">
    <div class="body">
 <h3>개인정보</h3>
-<hr style="border:1px solid #B7B5B5;"></hr>
+<hr style="border:1px solid black;"></hr>
 <table class="table">
 	<thead>
 		<tr>

@@ -183,6 +183,11 @@ margin-right:15px;
 	margin-top: 8px;
 	height: 110px;
 }
+
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>  
 
@@ -194,7 +199,7 @@ margin-right:15px;
    <div class="container">
    <div class="body">
     <h3>만화 검색</h3>	
-    <hr style="border:1px solid #B7B5B5;"></hr>
+    <hr style="border:1px solid black;"></hr>
 	 <c:forEach items="${list}" var="tmp" varStatus="count">
             
             <div class="leftleft">

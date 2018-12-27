@@ -20,4 +20,5 @@ public interface BoardReviewService {
 	public void saveComment(HttpServletRequest request);
 	public void updateComment(BoardReviewCommentDto dto);
 	public void deleteComment(int num);
+	public void boardreviewlist(HttpServletRequest request);
 }

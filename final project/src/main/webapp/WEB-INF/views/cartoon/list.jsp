@@ -205,6 +205,11 @@ image {
 	text-align: center;
 	border-bottom: 1px solid #B7B5B5;
 }
+
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
 
@@ -217,8 +222,9 @@ image {
 		<div class="body">
 			<div class="row">
 				<div class="col-xs-4">
-					<br /> <br /> <br />
-
+					<br /> 
+				<h3>요일별 웹툰보기 </h3>
+				<hr style="border:1px solid black;"></hr>
 				</div>
 				<div class="col-xs-3"></div>
 				<div class="col-xs-4">
@@ -286,7 +292,6 @@ image {
 
 			<div class="row">
 				<div class="col-xs-2">
-
 					<div id="weekmain">
 						<h4>월요일</h4>
 						<span class="up_flag_badge1" id="up_flag_badge1">N</span>

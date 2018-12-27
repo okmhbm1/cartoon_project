@@ -16,5 +16,5 @@ public interface BoardReviewDao {
 	public void delete(int num);
 	public BoardReviewDto getData(int num);
 	public void update(BoardReviewDto dto);
-	
+	public List<BoardReviewDto> boardreviewlist();
 }

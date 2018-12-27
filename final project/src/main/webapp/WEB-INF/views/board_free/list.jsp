@@ -140,6 +140,11 @@
         display:none;
         }
     }
+    
+    	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
 </style>
 <body>
 
@@ -152,14 +157,14 @@
 				
 			
 					<h3>자유게시판</h3> 
-					<hr style="border:1px solid #B7B5B5;"></hr>
+					<hr style="border:1px solid black;"></hr>
 		<table class="table table-hover" >
 	<tbody>
 		<tr align="center">
 			<td>번호</td>
 			<td>제목</td>
-			<td>작성자</td>
-			<td>작성일</td>
+			<td>글쓴이</td>
+			<td>날짜</td>
 			<td>조회수</td>
 		</tr>
 	</tbody>
@@ -224,7 +229,7 @@
 						<select name="condition" id="condition">
 							<option value="titlecontent" <c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
 							<option value="title" <c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
-							<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
+							<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>글쓴이</option>
 						</select>
 						<input value="${keyword }" type="text" name="keyword" placeholder="검색"/>
 						<button type="submit" class ="btn btn-default">검색</button>
@@ -236,8 +241,9 @@
    		</div> <!-- container left-->
 
 
-  <!-- 로그인 -->
+   <!-- 로그인 -->
    <div class="section right">
+   <div class="loginmargin">
     <c:choose>
    <c:when test="${empty sessionScope.userid }">
     <br/>
@@ -256,7 +262,6 @@
       </form>
    </c:when>
    <c:otherwise>
-   
    <table>
    	<tr>
    		<td><h3>${userid }님</h3><br /></td>
@@ -269,48 +274,14 @@
 	<a href="${pageContext.request.contextPath}/member/logout.do"><button class="btn btn-sm btn-default btn-block">로그아웃</button></a>
    </c:otherwise>
    </c:choose>
-
-
-     <!--주간/월간 순위-->
-    <h3>주간/월간 순위</h3>
-  <table class="table table-striped table-condensed">
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-    </tbody>
-  </table>
-   	</div> <!-- section--> 
-   
-   </div>  <!-- container-->
-  	 </div><!--body-->
+   </div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+ <jsp:include page="/WEB-INF/views/rank.jsp" flush="false" />
 
 <!-- jquery 로딩하기-->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>

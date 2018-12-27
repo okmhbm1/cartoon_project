@@ -225,7 +225,15 @@ public class BoardFreeServiceImpl implements BoardFreeService{
 		BoardFreeCommentDao.delete(num);
 		
 	}
+
+	@Override
+	public void boardfreelist(HttpServletRequest request) {
+	      List<BoardFreeDto> list = BoardFreeDao.boardfreelist();
+	      request.setAttribute("boardlist",list );
+	   }
 		
+
+	      
 }
 
 		

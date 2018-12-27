@@ -62,5 +62,9 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		session.update("boardreview.update", dto);
 	
 	}
+	@Override
+	   public List<BoardReviewDto> boardreviewlist() {
+	      return session.selectList("boardreview.boardreviewlist");
+	   }
 
 }

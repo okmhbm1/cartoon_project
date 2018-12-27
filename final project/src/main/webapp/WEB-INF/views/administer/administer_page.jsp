@@ -166,14 +166,11 @@
    <div class="body">
 
     
-
-    <div class="left col-xs-push-2" style="width:60%;height:150%;position:relative;top:20%;text-align:center"><br><br>
+                                    <h3>관리자 페이지 입니다.</h3>
+                                    <hr style="border:1px solid black;"></hr>
+    <div class="left col-xs-push-2" style="width:60%;height:150%;position:relative;top:15%;text-align:center"><br><br>
                   <div class="container" style="width:100%">
                           <div class="row" style="background-color:gray">
-
-                                    <div>관리자 페이지 입니다.</div>
-                                    <br>
-
                                     <div class="col-xs-4">
                                     <a href="crawling.do">
 		                                    <img src="${pageContext.request.contextPath}/resources/images/topni.jpg" style="position:relative;width:100%;height:150px">

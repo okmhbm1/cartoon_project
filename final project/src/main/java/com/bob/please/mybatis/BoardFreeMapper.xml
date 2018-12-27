@@ -93,6 +93,10 @@
 		SET title=#{title}, content=#{content}
 		WHERE num=#{num}
 	</update>
+	
+	  <select id="select_boardfreelist" resultType="boardfreedto">
+      select left(title,8) title ,writer,left(regdate,10) regdate from board_free order by regdate desc limit 0,10 ;
+   </select>
 </mapper>
 
 

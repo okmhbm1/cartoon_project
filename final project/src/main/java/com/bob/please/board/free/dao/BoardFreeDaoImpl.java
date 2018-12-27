@@ -60,5 +60,9 @@ public class BoardFreeDaoImpl implements BoardFreeDao{
 		session.update("boardfree.update", dto);
 	
 	}
+	@Override
+	   public List<BoardFreeDto> boardfreelist() {
+	      return session.selectList("boardfree.select_boardfreelist");
+	   }
 
 }

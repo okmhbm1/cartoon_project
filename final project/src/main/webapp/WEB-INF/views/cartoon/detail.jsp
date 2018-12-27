@@ -163,7 +163,10 @@
 }
 
 
-
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: underline; color: red;}
  
 </style>
 <body>
@@ -177,7 +180,7 @@
    <div class="body">
    <div class="container left">
       <h3>${dto.title }</h3>
-      <hr style="border:1px solid black"></hr>
+      <hr style="border:1px solid black;"></hr>
       <div class="row ">
          <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
          <br>
@@ -185,7 +188,7 @@
          <p><b>작가</b> : ${dto.painter }</p>
          <p><b>줄거리</b> : ${dto.description}</p>
          <p><b>조회수</b> : ${hit }</p>
-         <div class="right">평점 : ${dto.avg }</div>
+         <div class="right"><h4 style="color:red; font-weight: bold">평점 : ${dto.avg }</h4></div>
          <div style="display:none">${dto.days }</div>
          </div> <!--첫번째 row-->
          <button class="btn btn-default right link"> 즐겨찾기</button>          
@@ -216,8 +219,8 @@
                            <input type="hidden" id="num" name="num" value="${num }"/>
                               <input type="hidden" id="userid" name="userid" value="${userid }"/>
                               <input type="hidden" id="point" name="point"/>
-                               <input type="text" class="form-control" id="comment" placeholder="평가를 써주세요. 문장 길이 제한 : 한글 30자" maxlength="30"/>
-                                <button id="submitbtn" class="btn btn-primary "type="submit">전송</button>
+                               <input type="text" class="form-control" id="comment" placeholder="평가를 써주세요. 문장 길이 제한 : 한글 140자" maxlength="140"/>
+                                <button id="submitbtn" class="btn btn-default "type="submit">전송</button>
                             </form>
                             </c:if>   
          </div>
@@ -228,9 +231,9 @@
          
       
           <div class="col-xs-5">
-           <button id="recommend">추천순</button>
-           <button id="not_recommend">비추천순</button>
-            <button id="latest">최신순</button>
+           <button id="recommend" class="btn btn-default">추천순</button>
+           <button id="not_recommend" class="btn btn-default">비추천순</button>
+            <button id="latest" class="btn btn-default">최신순</button>
           </div>
 
           <div class="col-xs-5">
@@ -248,13 +251,19 @@
        <c:if test="${list ne null }">            
          <c:forEach items="${list }" var="tmp" varStatus="theCount">
                
-               <div class="row" style="text-align: center">
-                  <div class="col-xs-5 printpoint" >${tmp.point }</div>
-         
+               <div class="row">
+               
+            
+                  <div class="col-xs-5 printpoint" style="text-align:center " >${tmp.point }</div>
+         		<div style="text-align:left ">
                   <div div="commend_div" class="col-xs-7">${tmp.comment } 
-                  <br>
-                   아이디:<span class="commentid">${tmp.userid }</span><br>
-                  <button class="good" style="background-color:white;border:0px green;">공감</button><span></span>${tmp.good }<button class="notgood" style="background-color:white;border:0px green solid">비공감</button><span>${tmp.notgood }</span></div>
+                  <br/>
+                  <br/>
+                  <span class="commentid" style="font-weight: bold">아이디 : ${tmp.userid }</span>
+                   날짜 :<span>${tmp.regdate}</span>	
+                   <br/>
+                  <button class="good btn btn-primary btn-xs">공감 : <span>${tmp.good }</span></button><button class="notgood btn btn-danger btn-xs">비공감 : <span>${tmp.notgood }</span></button></div>
+                </div>
                 <c:set var="i" value="${theCount.count}"/>
                </div><!--row2 끝-->
          
@@ -284,49 +293,7 @@
 
 
 
-     <!--주간/월간 순위-->
-    <h3>주간/월간 순위</h3>
-  <table class="table table-striped table-condensed">
-    <tbody>
-      <tr>
-        <td>1등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>2등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>3등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>4등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>5등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>6등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>7등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>8등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>9등</td><td>드래곤볼</td>
-      </tr>
-            <tr>
-        <td>10등</td><td>드래곤볼</td>
-      </tr>
-    </tbody>
-  </table>
-      </div> <!-- section--> 
-   
-
-
-  
-
-  </div><!--body 끝-->
+ <jsp:include page="/WEB-INF/views/rank.jsp" flush="false" />
    </div> <!--container-->
 
 
@@ -353,35 +320,36 @@ $("#latest").on('click',function(){
 
 $(".link").on('click',function(){
 
-var cartoon_num=$("#num").val();
-var userid=$("#userid").val();
-var detail_url=location.href
-var days = '${dto.days }';
-   $.ajax({
-      method:'POST',
-      url:'link.do',
-      traditional:true,
-      data : {
-         "cartoon_num":cartoon_num,
-         "userid":userid,
-         "detail_url":detail_url,
-         "days" : days
-         
-      
-      },
-      success : function(success){
-         
-         
-         if(userid!=null && userid!=undefined ){
-            var result = confirm("즐겨찾기 게시판으로 가시겠습니까?");
-            if(result==true)
-            location.href="link_detail.do"
-         }
-      }
-   
-   });
 
-});
+   var cartoon_num=$("#num").val();
+   var userid=$("#userid").val();
+   var detail_url=location.href
+   var days = '${dto.days }';
+      $.ajax({
+         method:'POST',
+         url:'link.do',
+         traditional:true,
+         data : {
+            "cartoon_num":cartoon_num,
+            "userid":userid,
+            "detail_url":detail_url,
+            "days" : days
+            
+         
+         },
+         success : function(success){
+            
+            
+            if(userid!=null && userid!=undefined ){
+               var result = confirm("즐겨찾기 게시판으로 가시겠습니까?");
+               if(result==true)
+               location.href="link_detail.do"
+            }
+         }
+      
+      });
+
+   });
    //alert($("#num").val());
    $("#recomm").on('click',function(){
       var cartoon_num=$("#num").val();
